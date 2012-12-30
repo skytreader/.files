@@ -1,5 +1,5 @@
 *.py~
-.pyc
+*.pyc
 */__pycache__/*
 *.swp
 *~
