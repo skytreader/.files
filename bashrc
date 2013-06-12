@@ -107,3 +107,11 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+# Chad's personal commands
+make_and_switch(){
+    mkdir $1
+    cd $1
+}
+
+alias msdir='make_and_switch'
