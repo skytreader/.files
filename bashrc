@@ -115,3 +115,13 @@ make_and_switch(){
 }
 
 alias msdir='make_and_switch'
+
+cped(){
+    cp $1 $2
+    vi $2
+}
+
+mved(){
+    mv $1 $2
+    vi $2
+}
