@@ -109,19 +109,27 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Chad's personal commands
-make_and_switch(){
+
+# Create a directory and switch to it.
+msdir(){
     mkdir $1
     cd $1
 }
 
-alias msdir='make_and_switch'
-
+# Duplicate a file and edit the duplicate (with vi(m)).
 cped(){
     cp $1 $2
     vi $2
 }
 
+# Move a file and edit the new file (with vi(m)).
 mved(){
     mv $1 $2
     vi $2
+}
+
+# Create a new executable file (with vi(m)).
+xvi(){
+    vi $1
+    chmod +x $1
 }
