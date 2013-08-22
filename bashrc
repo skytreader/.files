@@ -84,9 +84,13 @@ fi
 # some more ls aliases
 alias ll='ls -alF'
 
+export VIRTUALENVWRAPPER_LOG_DIR='/home/chad/venvlog/'
 source /home/chad/.venvburrito/startup.sh
 alias la='ls -A'
 alias l='ls -CF'
+
+# Add /opt/bin to PATH
+PATH=$PATH:/opt/bin
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
