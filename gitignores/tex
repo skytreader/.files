@@ -1,4 +1,4 @@
 # Used for documentation purposes (well, not strictly)
-.aux
-.log
-.out
+*.aux
+*.log
+*.out
