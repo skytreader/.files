@@ -83,11 +83,13 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
-
-export VIRTUALENVWRAPPER_LOG_DIR='/home/ch/venvlog/'
-source /home/ch/.venvburrito/startup.sh
 alias la='ls -A'
 alias l='ls -CF'
+
+# For virtualenv
+me=`whoami`
+export VIRTUALENVWRAPPER_LOG_DIR="/home/$me/venvlog/"
+source /home/$me/.venvburrito/startup.sh
 
 # Add /opt/bin to PATH
 PATH=$PATH:/opt/bin
