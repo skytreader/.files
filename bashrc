@@ -83,13 +83,11 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
+
+export VIRTUALENVWRAPPER_LOG_DIR='/home/ch/venvlog/'
+source /home/ch/.venvburrito/startup.sh
 alias la='ls -A'
 alias l='ls -CF'
-
-
-# for virtualenv
-export VIRTUALENVWRAPPER_LOG_DIR='/home/chad/venvlog/'
-source /home/chad/.venvburrito/startup.sh
 
 # Add /opt/bin to PATH
 PATH=$PATH:/opt/bin
@@ -138,4 +136,14 @@ mved(){
 xvi(){
     vi $1
     chmod +x $1
+}
+
+# Clean ps -eaf | grep
+pid(){
+    grepstr=$1
+    greplen=${#grepstr}
+    grepfirst=${grepstr:0:1}
+    greprest=${grepstr:1:$greplen-1}
+    grepexp="[$grepfirst]$greprest"
+    ps -eaf | grep "$grepexp"
 }
