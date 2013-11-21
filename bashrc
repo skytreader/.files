@@ -149,3 +149,17 @@ pid(){
     grepexp="[$grepfirst]$greprest"
     ps -eaf | grep "$grepexp"
 }
+
+# Get the most used commands in bash
+# Taken from a tip in CoderWall
+stats(){
+    if [ -z "$1" ]; then
+        history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+    else
+        history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head -n $1
+    fi
+}
+
+brc(){
+    source ~/.bashrc
+}
