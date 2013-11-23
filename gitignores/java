@@ -1,5 +1,5 @@
 *.sw?
 *~
-*.log
+*.log.*
 *.class
 *.bak
