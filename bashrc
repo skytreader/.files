@@ -163,3 +163,9 @@ stats(){
 brc(){
     source ~/.bashrc
 }
+
+# This one is from nixCraft
+# Edit files with automatic back-up
+bake(){
+    [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d%m%y`; vi "$1";
+}
