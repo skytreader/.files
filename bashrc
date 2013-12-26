@@ -169,3 +169,9 @@ brc(){
 bake(){
     [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d%m%y`; vi "$1";
 }
+
+# Move specified file/directory to /opt/bin so that it is executable _anywhere_
+# on the file system.
+anywhere(){
+    sudo mv $1 /opt/bin/
+}
