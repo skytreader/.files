@@ -175,3 +175,10 @@ bake(){
 anywhere(){
     sudo mv $1 /opt/bin/
 }
+
+# Create a run script in /opt/bin (with anywhere, do this to keep your binaries
+# organized).
+anyscript(){
+    sudo vi /opt/bin/$1
+    sudo chmod +x /opt/bin/$1
+}
