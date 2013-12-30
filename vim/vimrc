@@ -63,6 +63,11 @@ set colorcolumn=80
 " Taken from http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
+" For Arduino syntax, assuming the following is in /etc/vim/syntax:
+" http://www.vim.org/scripts/script.php?script_id=2654
+au BufRead,BufNewFile *.pde set filetype=arduino
+au BufRead,BufNewFile *.ino set filetype=arduino
+
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
