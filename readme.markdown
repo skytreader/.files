@@ -2,7 +2,7 @@
 My personal Linux config files. My current set-up is Ubuntu 12.04 and bash
 4.2.25(1)-release.
 
-# Set-up flow on a new machine
+# bashrc set-up on a new machine
 
     cd ~/kode
     git clone https://github.com/skytreader/.files dotfiles
@@ -10,3 +10,10 @@ My personal Linux config files. My current set-up is Ubuntu 12.04 and bash
     ./gobash
     source ~/.bashrc
     ./configit
+
+# vim set-up on a new machine
+Assuming the repository has already been cloned as above, just copy the whole
+`vim` directory in `/etc/vim`.
+
+    cd vim
+    sudo cp . /etc/vim
