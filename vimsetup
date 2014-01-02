@@ -1,0 +1,2 @@
+cd vim
+sudo cp -r . /etc/vim
