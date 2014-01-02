@@ -16,4 +16,6 @@ Assuming the repository has already been cloned as above, just copy the whole
 `vim` directory in `/etc/vim`.
 
     cd vim
-    sudo cp . /etc/vim
+    sudo cp -r . /etc/vim
+
+Or just use the included `vimsetup` script.
