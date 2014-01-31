@@ -1,2 +1,4 @@
 cp ~/.bashrc ~/bashrc.bak
 cp bashrc ~/.bashrc
+cp ~/.bash_personal ~/bash_personal.bak
+cp bash_personal ~/.bash_personal
