@@ -1,0 +1,68 @@
+# Chad's personal commands
+
+# Create a directory and switch to it.
+msdir(){
+    mkdir $1
+    cd $1
+}
+
+# Duplicate a file and edit the duplicate (with vi(m)).
+cped(){
+    cp $1 $2
+    vi $2
+}
+
+# Move a file and edit the new file (with vi(m)).
+mved(){
+    mv $1 $2
+    vi $2
+}
+
+# Create a new executable file (with vi(m)).
+xvi(){
+    vi $1
+    chmod +x $1
+}
+
+# Clean ps -eaf | grep
+pid(){
+    grepstr=$1
+    greplen=${#grepstr}
+    grepfirst=${grepstr:0:1}
+    greprest=${grepstr:1:$greplen-1}
+    grepexp="[$grepfirst]$greprest"
+    ps -eaf | grep "$grepexp"
+}
+
+# Get the most used commands in bash
+# Taken from a tip in CoderWall
+stats(){
+    if [ -z "$1" ]; then
+        history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+    else
+        history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head -n $1
+    fi
+}
+
+brc(){
+    source ~/.bashrc
+}
+
+# This one is from nixCraft
+# Edit files with automatic back-up
+bake(){
+    [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d%m%y`; vi "$1";
+}
+
+# Move specified file/directory to /opt/bin so that it is executable _anywhere_
+# on the file system.
+anywhere(){
+    sudo mv $1 /opt/bin/
+}
+
+# Create a run script in /opt/bin (with anywhere, do this to keep your binaries
+# organized).
+anyscript(){
+    sudo vi /opt/bin/$1
+    sudo chmod +x /opt/bin/$1
+}
