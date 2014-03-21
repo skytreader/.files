@@ -11,6 +11,15 @@ My personal Linux config files. My current set-up is Ubuntu 12.04 and bash
     source ~/.bashrc
     ./configit
 
+## bashrc update
+
+    ./gobash
+    source ~/.bashrc
+
+**Important:** Execute the two commands above in the directory of this repo. You
+need to manually `source ~/.bashrc` (i.e., don't put those two lines in a script
+anymore).
+
 # vim set-up on a new machine
 Assuming the repository has already been cloned as above, just copy the whole
 `vim` directory in `/etc/vim`.
