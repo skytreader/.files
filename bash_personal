@@ -66,3 +66,13 @@ anyscript(){
     sudo vi /opt/bin/$1
     sudo chmod +x /opt/bin/$1
 }
+
+# Automagically daemonize the process you will execute.
+daemonize(){
+    procstring=""
+    for i in "$@"
+    do
+        procstring+=" $i"
+    done
+    nohup $procstring < /dev/null > daemonize.out 2>&1&
+}
