@@ -1,6 +1,6 @@
-*.sw?
+*.swp
 *~
 *.log
 *.log.*
-*.class
 *.bak
+*.class
