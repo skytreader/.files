@@ -76,3 +76,10 @@ daemonize(){
     done
     nohup $procstring < /dev/null > daemonize.out 2>&1&
 }
+
+# If you have maven installed, a maven quickstart give it the group id and the
+# artifact id
+# sample usage `mvnstart net.skytreader.kode chess-templar`
+mvnstart(){
+    mvn archetype:generate -DgroupId=$1 -DartifactId=$2 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+}
