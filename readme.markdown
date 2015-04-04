@@ -35,4 +35,5 @@ I could've just `git submodule`d them from their respective repositories but I
 figured that might take more work/hack scripts for the simple and pain-free
 new-machine set-up that is the purpose of this repo so I'll just credit them here.
 
-- [Arduino syntax](https://bitbucket.org/johannes/arduino-vim-syntax) Johannes Hoff
+- [Arduino syntax](https://bitbucket.org/johannes/arduino-vim-syntax) by Johannes Hoff
+- [Jinja2 syntax](https://github.com/Glench/Vim-Jinja2-Syntax) by Glench
