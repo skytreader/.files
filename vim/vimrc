@@ -54,6 +54,7 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 syntax on
+set ruler
 set number
 set ai
 set ts=4
