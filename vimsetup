@@ -1,2 +1,3 @@
+# This is only good for a fresh machine set-up! See also vimupdate.
 cd vim
 sudo cp -r . /etc/vim

@@ -1,0 +1,31 @@
+# A script to add new syntax/ftdetect/indent files to /etc/vim.
+#
+# This script assumes that the files to be moved is in the `vim` directory, in
+# their respective syntax/ftdetect/indent subdirectories, and has the same filename
+# (preferrably for the language for which they will be used).
+#
+# Example usage: ./vimupdate jinja
+
+if [ ! -d /etc/vim/syntax ]; then
+    sudo mkdir /etc/vim/syntax
+fi
+
+if [ ! -d /etc/vim/ftdetect ]; then
+    sudo mkdir /etc/vim/ftdetect
+fi
+
+if [ ! -d /etc/vim/indent ]; then
+    sudo mkdir /etc/vim/indent
+fi
+
+if [ -f ./vim/syntax/$1.vim ]; then
+    sudo cp ./vim/syntax/$1.vim /etc/vim/syntax
+fi
+
+if [ -f ./vim/ftdetect/$1.vim ]; then
+    sudo cp ./vim/ftdetect/$1.vim /etc/vim/ftdetect
+fi
+
+if [ -f ./vim/indent/$1.vim ]; then
+    sudo cp ./vim/indent/$1.vim /etc/vim/indent
+fi
