@@ -28,3 +28,11 @@ Assuming the repository has already been cloned as above, just copy the whole
     sudo cp -r . /etc/vim
 
 Or just use the included `vimsetup` script.
+
+## vim files credit
+
+I could've just `git submodule`d them from their respective repositories but I
+figured that might take more work/hack scripts for the simple and pain-free
+new-machine set-up that is the purpose of this repo so I'll just credit them here.
+
+- [Arduino syntax](https://bitbucket.org/johannes/arduino-vim-syntax) Johannes Hoff
