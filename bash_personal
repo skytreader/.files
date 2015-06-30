@@ -89,36 +89,36 @@ mvnstart(){
 # stuff is installed locally to the user.
 vip(){
     # Checks for the user's vim folders
-    if [ ! -d "~/.vim/ftplugin"]; then
+    if [ ! -d "~/.vim/ftplugin" ]; then
         mkdir "~/.vim/ftplugin"
     fi
 
-    if [ ! -d "~/.vim/indent"]; then
+    if [ ! -d "~/.vim/indent" ]; then
         mkdir "~/.vim/indent"
     fi
 
-    if [ ! -d "~/.vim/syntax"]; then
+    if [ ! -d "~/.vim/syntax" ]; then
         mkdir "~/.vim/syntax"
     fi
 
-    if [ ! -d "~/.vim/plugin"]; then
+    if [ ! -d "~/.vim/plugin" ]; then
         mkdir "~/.vim/plugin"
     fi
 
     # Now move the contents of current directory, but only those that apply.
-    if [ -d "ftplugin"]; then
+    if [ -d "ftplugin" ]; then
         cp ftplugin/* ~/.vim/ftplugin
     fi
 
-    if [ -d "indent"]; then
+    if [ -d "indent" ]; then
         cp indent/* ~/.vim/indent
     fi
 
-    if [ -d "syntax"]; then
+    if [ -d "syntax" ]; then
         cp syntax/* ~/.vim/syntax
     fi
 
-    if [ -d "plugin"]; then
+    if [ -d "plugin" ]; then
         cp plugin/* ~/.vim/plugin
     fi
 }
