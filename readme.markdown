@@ -1,6 +1,8 @@
 # .files
-My personal Linux config files. My current set-up is Ubuntu 12.04 and bash
-4.2.25(1)-release.
+My personal Linux config files. I am using this on the following platforms:
+
+- Ubuntu 12.04 with bash 4.2.25(1)-release
+- Ubuntu 14.04 with bash 4.3.11(1)-release
 
 # bashrc set-up on a new machine
 
@@ -28,6 +30,13 @@ Assuming the repository has already been cloned as above, just copy the whole
     sudo cp -r . /etc/vim
 
 Or just use the included `vimsetup` script.
+
+## ...on not-new machines
+If you update anything in the `vim` directory, use the included `vimsetup`
+script.
+
+If you need to install other vim syntax stuff not in the `vim` directory, you
+may use the `vip` command defined (assuming bash has been set-up).
 
 ## vim files credit
 
