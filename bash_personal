@@ -93,6 +93,10 @@ vip(){
     fi
     
     # Checks for the user's vim folders
+    if [ ! -d ~/.vim/compiler ]; then
+        mkdir ~/.vim/compiler
+    fi
+
     if [ ! -d ~/.vim/ftdetect ]; then
         mkdir ~/.vim/ftdetect
     fi
@@ -114,6 +118,9 @@ vip(){
     fi
 
     # Now move the contents of current directory, but only those that apply.
+    if [ -d compiler ]; then
+        cp compiler/* ~/.vim/compiler
+    fi
 
     if [ -d ftdetect ]; then
         cp ftdetect/* ~/.vim/ftdetect
