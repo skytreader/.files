@@ -1,0 +1,6 @@
+[submodule "vim-work/kalibrr/vim-jade"]
+	path = vim-work/kalibrr/vim-jade
+	url = https://github.com/digitaltoad/vim-jade.git
+[submodule "vim-work/kalibrr/typescript-vim"]
+	path = vim-work/kalibrr/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
