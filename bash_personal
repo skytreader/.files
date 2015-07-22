@@ -89,24 +89,24 @@ mvnstart(){
 # stuff is installed locally to the user.
 vip(){
     if [ ! -d "~/.vim" ]; then
-        mkdir "~/.vim"
+        mkdir ~/.vim
     fi
     
     # Checks for the user's vim folders
     if [ ! -d "~/.vim/ftplugin" ]; then
-        mkdir "~/.vim/ftplugin"
+        mkdir ~/.vim/ftplugin
     fi
 
     if [ ! -d "~/.vim/indent" ]; then
-        mkdir "~/.vim/indent"
+        mkdir ~/.vim/indent
     fi
 
     if [ ! -d "~/.vim/syntax" ]; then
-        mkdir "~/.vim/syntax"
+        mkdir ~/.vim/syntax
     fi
 
     if [ ! -d "~/.vim/plugin" ]; then
-        mkdir "~/.vim/plugin"
+        mkdir ~/.vim/plugin
     fi
 
     # Now move the contents of current directory, but only those that apply.
