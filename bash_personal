@@ -88,6 +88,10 @@ mvnstart(){
 # directory with subdirectories like ftplugin, indent, syntax, plugin. The vim
 # stuff is installed locally to the user.
 vip(){
+    if [ ! -d "~/.vim" ]; then
+        mkdir "~/.vim"
+    fi
+    
     # Checks for the user's vim folders
     if [ ! -d "~/.vim/ftplugin" ]; then
         mkdir "~/.vim/ftplugin"

@@ -2,3 +2,4 @@ cp ~/.bashrc ~/bashrc.bak
 cp bashrc ~/.bashrc
 cp ~/.bash_personal ~/bash_personal.bak
 cp bash_personal ~/.bash_personal
+echo "Now do \`source ~/.bashrc\` for your changes to take effect in current session."
