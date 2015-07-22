@@ -87,7 +87,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Add /opt/bin to PATH
-PATH=$PATH:/opt/bin
+export PATH=$PATH:/opt/bin
 
 # Configure Maven
 maven_ver="3.2.3"
