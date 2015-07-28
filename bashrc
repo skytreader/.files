@@ -116,6 +116,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# venvburrito
+if [ -f ~/.venvburrito/startup.sh ]; then
+    . ~/.venvburrito/startup.sh
+fi
+
 # Load my personal preferences, if it's there.
 if [ -f ~/.bash_personal ]; then
     . ~/.bash_personal
