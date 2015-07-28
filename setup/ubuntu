@@ -2,6 +2,9 @@
 
 # A collection of installs for my preferred Ubuntu customizations.
 
+# Install virtualenv via virtualenv burrito
+curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+
 # Add all PPA's here
 sudo add-apt-repository ppa:webupd8team/java
 
