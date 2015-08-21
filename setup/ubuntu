@@ -16,4 +16,4 @@ sudo add-apt-repository ppa:cpick/hub
 
 sudo apt-get update
 
-sudo apt-get install -y compizconfig-settings-manager hub oracle-java8-installer ppa-purge tree unity-tweak-tool xclip
+sudo apt-get install -y compizconfig-settings-manager hub oracle-java8-installer ppa-purge traceroute tree unity-tweak-tool xclip
