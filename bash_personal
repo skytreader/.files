@@ -51,7 +51,7 @@ brc(){
 # This one is from nixCraft
 # Edit files with automatic back-up
 bake(){
-    [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d%m%y`; vi "$1";
+    [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d-%m-%y-%H.%M.%S`; vi "$1";
 }
 
 # Move specified file/directory to /opt/bin so that it is executable _anywhere_
