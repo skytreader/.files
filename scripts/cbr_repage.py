@@ -10,6 +10,11 @@ pages are not done properly. This script will help you relabel the files.
 Instructions: Extract the contents of the CBR archive in a directory of its own.
 Then, give that directory to this script. If needed, rewrite the transform
 function. After that, recompile CBR if need be.
+
+Observations:
+    - Looks like the best way to ensure that CBRs are paginated properly is to
+      make their filenames all the same number of characters.
+    - **Do not forget** the extension of the images when rewriting them.
 """
 
 def transform(fname):
@@ -23,7 +28,11 @@ def transform(fname):
     """
     print(fname)
     parse = fname[0:len(fname) - 4].split("-")
-    return "0" + parse[1] + fname[-4:]
+
+    if len(parse[1]) == 1:
+        return "0" + parse[1] + fname[-4:]
+    else:
+        return parse[1] + fname[-4:]
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
