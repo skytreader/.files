@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import glob
 import os
+import subprocess
 import sys
 
 """
@@ -26,13 +27,13 @@ def transform(fname):
     
     return another string.
     """
-    print(fname)
-    parse = fname[0:len(fname) - 4].split("-")
+    if fname == "01.jpg":
+        return "00.jpg"
 
-    if len(parse[1]) == 1:
-        return "0" + parse[1] + fname[-4:]
+    if len(fname) == 5:
+        return "0" + fname
     else:
-        return parse[1] + fname[-4:]
+        return fname
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -43,9 +44,11 @@ if __name__ == "__main__":
         sys.argv[1] += "/"
 
     cbr_pages = glob.glob(sys.argv[1] + "*")
-    print(cbr_pages)
+    dirname = sys.argv[1].split("/")[-2]
 
     for page in cbr_pages:
         plain_name = page.split("/")[-1]
         transformed = transform(plain_name)
         os.rename(page, sys.argv[1] + transformed)
+
+    subprocess.call(["rar", "a", sys.argv[1] + dirname + ".cbr", sys.argv[1] + "*"])
