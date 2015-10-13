@@ -94,7 +94,7 @@ maven_ver="3.2.3"
 export M2_HOME="/opt/bin/apache-maven-$maven_ver"
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
-export JAVA_HOME="/usr"
+export JAVA_HOME="/usr/bin"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
