@@ -142,3 +142,7 @@ vip(){
         cp plugin/* ~/.vim/plugin
     fi
 }
+
+find_large_files(){
+    du -a $1 | sort -n -r | head -n $2
+}
