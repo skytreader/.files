@@ -70,6 +70,9 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
 
+set foldmethod=indent
+set foldlevel=99
+
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
