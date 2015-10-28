@@ -72,6 +72,7 @@ au BufRead,BufNewFile *.ino set filetype=arduino
 
 set foldmethod=indent
 set foldlevel=99
+map <space> za
 
 function! ResCur()
   if line("'\"") <= line("$")
