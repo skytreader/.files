@@ -18,6 +18,8 @@ if [ ! -d /etc/vim/indent ]; then
     sudo mkdir /etc/vim/indent
 fi
 
+sudo cp ./vim/vimrc /etc/vim
+
 if [ -f ./vim/syntax/$1.vim ]; then
     sudo cp ./vim/syntax/$1.vim /etc/vim/syntax
 fi
