@@ -146,3 +146,8 @@ vip(){
 find_large_files(){
     du -a $1 | sort -n -r | head -n $2
 }
+
+list_pkgs(){
+    # List packages following a specific pattern. WARNING: Ubuntu-specific.
+    dpkg --get-selections | grep $1
+}
