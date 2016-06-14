@@ -151,3 +151,7 @@ list_pkgs(){
     # List packages following a specific pattern. WARNING: Ubuntu-specific.
     dpkg --get-selections | grep $1
 }
+
+wttr(){
+    curl wttr.in/$1
+}
