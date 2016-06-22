@@ -155,3 +155,9 @@ list_pkgs(){
 wttr(){
     curl wttr.in/$1
 }
+
+pycheck(){
+    # The One True Way
+    # Also see `python -m compileall`
+    python -m py_compile $1
+}
