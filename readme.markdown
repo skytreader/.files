@@ -13,6 +13,10 @@ My personal Linux config files. I am using this on the following platforms:
     source ~/.bashrc
     ./configit
 
+Additionally, you can set-up some of the additional tools I use by invoking the
+scripts at `setup/`. Each script is named for the distro for which it can be
+used (currently only `ubuntu`).
+
 ## bashrc update
 
     ./gobash
