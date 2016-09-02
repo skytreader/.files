@@ -41,6 +41,13 @@ Needless to mention (but mentioned anyway), how to debug network problems:
 - `ping` as a quick (but not rigorous) check on general connectivity.
 - `traceroute` to check where the bottleneck is (hitting the router? DNS? ISP routes?).
 
+## Possible triggers
+
+I am not joking with this list
+
+1. Me leaving my chair.
+2. Closing the door.
+
 ## Sample Logs
 
 **Ubuntu 14.04, weird wireless problem**
@@ -333,3 +340,43 @@ Logs of success:
     Sep  3 06:27:35 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 4 of 5 (IPv6 Configure Timeout) started...
     Sep  3 06:27:35 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 4 of 5 (IPv6 Configure Timeout) complete.
     Sep  3 06:28:14 zangetsu wpa_supplicant[1074]: wlan0: CTRL-EVENT-SCAN-STARTED
+
+Situation: Ubuntu can detect the AP (it shows up in the WiFi AP list) but it
+cannot connect to it for some reason. Logs when attempting to connect are as follows.
+
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) starting connection 'urrutia'
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> (wlan0): device state change: disconnected -> prepare (reason 'none') [30 40 0]
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> NetworkManager state is now CONNECTING
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 1 of 5 (Device Prepare) scheduled...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 1 of 5 (Device Prepare) started...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 2 of 5 (Device Configure) scheduled...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 1 of 5 (Device Prepare) complete.
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 2 of 5 (Device Configure) starting...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> (wlan0): device state change: prepare -> config (reason 'none') [40 50 0]
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0/wireless): access point 'urrutia' has security, but secrets are required.
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> (wlan0): device state change: config -> need-auth (reason 'none') [50 60 0]
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 2 of 5 (Device Configure) complete.
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 1 of 5 (Device Prepare) scheduled...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 1 of 5 (Device Prepare) started...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> (wlan0): device state change: need-auth -> prepare (reason 'none') [60 40 0]
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 2 of 5 (Device Configure) scheduled...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 1 of 5 (Device Prepare) complete.
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 2 of 5 (Device Configure) starting...
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> (wlan0): device state change: prepare -> config (reason 'none') [40 50 0]
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0/wireless): connection 'urrutia' has security, and secrets exist.  No new secrets needed.
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Config: added 'ssid' value 'urrutia'
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Config: added 'scan_ssid' value '1'
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Config: added 'key_mgmt' value 'WPA-PSK'
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Config: added 'psk' value '<omitted>'
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Activation (wlan0) Stage 2 of 5 (Device Configure) complete.
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> Config: set interface ap_scan to 1
+    Sep  3 06:43:20 zangetsu NetworkManager[909]: <info> (wlan0): supplicant interface state: disconnected -> scanning
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <warn> Activation (wlan0/wireless): association took too long, failing activation.
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> (wlan0): device state change: config -> failed (reason 'SSID not found') [50 120 53]
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> NetworkManager state is now DISCONNECTED
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> Marking connection 'urrutia' invalid.
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <warn> Activation (wlan0) failed for connection 'urrutia'
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> (wlan0): device state change: failed -> disconnected (reason 'none') [120 30 0]
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> (wlan0): deactivating device (reason 'none') [0]
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> (wlan0): supplicant interface state: scanning -> disconnected
+    Sep  3 06:43:45 zangetsu NetworkManager[909]: <warn> Couldn't disconnect supplicant interface: This interface is not connected.
