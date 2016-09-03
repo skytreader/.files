@@ -41,12 +41,17 @@ Needless to mention (but mentioned anyway), how to debug network problems:
 - `ping` as a quick (but not rigorous) check on general connectivity.
 - `traceroute` to check where the bottleneck is (hitting the router? DNS? ISP routes?).
 
-## Possible triggers
+Right now, the "most reliable" way of re-establishing wireless connection is via
+actually restarting the router.
+
+## Possible triggers/interference sources
 
 I am not joking with this list
 
 1. Me leaving my chair.
 2. Closing the door.
+3. [Akari Smart Insect Killer](https://tackthis.ph/shop/akari/product/smart-insect-killer-akari-aemk-849-)
+situated right beside my desk.
 
 ## Sample Logs
 
