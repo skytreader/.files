@@ -385,3 +385,10 @@ cannot connect to it for some reason. Logs when attempting to connect are as fol
     Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> (wlan0): deactivating device (reason 'none') [0]
     Sep  3 06:43:45 zangetsu NetworkManager[909]: <info> (wlan0): supplicant interface state: scanning -> disconnected
     Sep  3 06:43:45 zangetsu NetworkManager[909]: <warn> Couldn't disconnect supplicant interface: This interface is not connected.
+
+## Resolution
+
+In the end, I figured out that my desk suddenly became a WiFi deadspot. After
+some trial and error, I figured out that the culprit is the steel ladder just
+outside my window. Apparently, just this week, it was put up in a standing
+position outside my window.
