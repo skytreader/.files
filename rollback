@@ -1,0 +1,17 @@
+#! /bin/bash
+# http://www.cyberciti.biz/howto/debian-linux/ubuntu-linux-rollback-an-apt-get-upgrade/
+# Run as root
+# Store packages name in $p
+p="$(</tmp/final.packages.txt)"
+ 
+# Nuke it
+apt-get --purge remove $p
+ 
+#clears out the local repository of retrieved package files
+apt-get clean
+ 
+# Just in case ...
+apt-get autoremove
+ 
+# Verify disk space
+df -H
