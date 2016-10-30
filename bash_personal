@@ -147,8 +147,8 @@ find_large_files(){
     du -a $1 | sort -n -r | head -n $2
 }
 
+# List packages following a specific pattern. WARNING: Ubuntu-specific.
 list_pkgs(){
-    # List packages following a specific pattern. WARNING: Ubuntu-specific.
     dpkg --get-selections | grep $1
 }
 
@@ -156,9 +156,9 @@ wttr(){
     curl wttr.in/$1
 }
 
+# The One True Way
+# Also see `python -m compileall`
 pycheck(){
-    # The One True Way
-    # Also see `python -m compileall`
     python -m py_compile $1
 }
 
