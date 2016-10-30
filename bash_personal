@@ -161,3 +161,11 @@ pycheck(){
     # Also see `python -m compileall`
     python -m py_compile $1
 }
+
+mancp(){
+    echo "The & operator takes a piece of data and tells you where it's stored."
+    echo "The * operator takes an address and tells you what is stored there."
+    echo "In the LHS, the * operator behaves a bit differently:"
+    echo "int *x_address = &x; // Get the address of x so you can do pointer arithmetic on it."
+    echo "*x_address = 42; // Reassign the value stored in x to 42."
+}
