@@ -16,3 +16,7 @@ sudo apt-get update
 
 sudo apt-get install -y compizconfig-settings-manager ppa-purge traceroute tree unity-tweak-tool vim xclip
 sudo apt-get install -y oracle-java8-installer
+
+# From http://askubuntu.com/a/447677/36150
+dconf write /org/compiz/profiles/unity/plugins/core/hsize 3
+dconf write /org/compiz/profiles/unity/plugins/core/vsize 3
