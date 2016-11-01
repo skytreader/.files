@@ -1,15 +1,18 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # A collection of installs for my preferred Ubuntu customizations.
 
 # Install virtualenv via virtualenv burrito
-curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+if [ ! -d ~/.virtualenvs ]; then
+    curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+fi
 
 ##########################
 # Add all PPA's here
 ##########################
-sudo add-apt-repository ppa:webupd8team/java
+sudo add-apt-repository -y ppa:webupd8team/java
 
 sudo apt-get update
 
-sudo apt-get install -y compizconfig-settings-manager oracle-java8-installer ppa-purge traceroute tree unity-tweak-tool xclip
+sudo apt-get install -y compizconfig-settings-manager ppa-purge traceroute tree unity-tweak-tool vim xclip
+sudo apt-get install -y oracle-java8-installer
