@@ -1,5 +1,19 @@
-cp ~/.bashrc ~/bashrc.bak
-cp bashrc ~/.bashrc
-cp ~/.bash_personal ~/bash_personal.bak
-cp bash_personal ~/.bash_personal
+# Takes in a filename of a file _inside_ the dotfiles repo
+function transfer() {
+    cp ~/.$1 ~/$1.bak
+    cp $1 ~/.$1
+    sudo cp /root/.$1 /root/.$1.bak
+    sudo cp $1 /root/.$1
+}
+
+transfer bashrc
+transfer bash_personal
+transfer bash_aliases
+#cp ~/.bashrc ~/bashrc.bak
+#cp bashrc ~/.bashrc
+#sudo cp bashrc /root/.bashrc
+#cp ~/.bash_personal ~/bash_personal.bak
+#cp bash_personal ~/.bash_personal
+#cp ~/.bash_aliases ~/bash_aliases.bak
+#cp bash_aliases ~/.bash_aliases
 echo "Now do \`source ~/.bashrc\` for your changes to take effect in current session."
