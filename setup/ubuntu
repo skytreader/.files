@@ -2,6 +2,10 @@
 
 # A collection of installs for my preferred Ubuntu customizations.
 
+# From http://askubuntu.com/a/447677/36150
+dconf write /org/compiz/profiles/unity/plugins/core/hsize 3
+dconf write /org/compiz/profiles/unity/plugins/core/vsize 3
+
 # Install virtualenv via virtualenv burrito
 if [ ! -d ~/.virtualenvs ]; then
     curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
@@ -16,7 +20,3 @@ sudo apt-get update
 
 sudo apt-get install -y compizconfig-settings-manager ppa-purge traceroute tree unity-tweak-tool vim xclip
 sudo apt-get install -y oracle-java8-installer
-
-# From http://askubuntu.com/a/447677/36150
-dconf write /org/compiz/profiles/unity/plugins/core/hsize 3
-dconf write /org/compiz/profiles/unity/plugins/core/vsize 3
