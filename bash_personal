@@ -169,3 +169,9 @@ mancp(){
     echo "int *x_address = &x; // Get the address of x so you can do pointer arithmetic on it."
     echo "*x_address = 42; // Reassign the value stored in x to 42."
 }
+
+# Mount windows drive read-only.
+# Useful becase Windows boots so slow.
+mountwin(){
+    sudo mount -t "ntfs" -ro "uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000" "/dev/sda3" "/media/chad/Windows"
+}
