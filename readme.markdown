@@ -1,10 +1,18 @@
 # .files
 My personal Linux config files. I am using this on the following platforms:
 
-- Ubuntu 12.04 with bash 4.2.25(1)-release
 - Ubuntu 14.04 with bash 4.3.11(1)-release
+- Ubuntu 16.04 with bash 4.3.46(1)-release
 
 # bashrc set-up on a new machine
+
+## Pre-set-up set-up
+Some gotcha's for complete user-friendliness.
+
+    ~$ sudo apt-get install git
+    ~$ mkdir kode
+
+## Actual set-up
 
     cd ~/kode
     git clone https://github.com/skytreader/.files dotfiles
@@ -27,8 +35,9 @@ need to manually `source ~/.bashrc` (i.e., don't put those two lines in a script
 anymore).
 
 # vim set-up on a new machine
-Assuming the repository has already been cloned as above, just copy the whole
-`vim` directory in `/etc/vim`.
+Assuming setup script for your distro has been run (it should install `vim` if
+it is not included by default), just copy the whole `vim` directory in
+`/etc/vim`.
 
     cd vim
     sudo cp -r . /etc/vim

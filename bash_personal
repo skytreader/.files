@@ -147,8 +147,8 @@ find_large_files(){
     du -a $1 | sort -n -r | head -n $2
 }
 
+# List packages following a specific pattern. WARNING: Ubuntu-specific.
 list_pkgs(){
-    # List packages following a specific pattern. WARNING: Ubuntu-specific.
     dpkg --get-selections | grep $1
 }
 
@@ -156,8 +156,22 @@ wttr(){
     curl wttr.in/$1
 }
 
+# The One True Way
+# Also see `python -m compileall`
 pycheck(){
-    # The One True Way
-    # Also see `python -m compileall`
     python -m py_compile $1
+}
+
+mancp(){
+    echo "The & operator takes a piece of data and tells you where it's stored."
+    echo "The * operator takes an address and tells you what is stored there."
+    echo "In the LHS, the * operator behaves a bit differently:"
+    echo "int *x_address = &x; // Get the address of x so you can do pointer arithmetic on it."
+    echo "*x_address = 42; // Reassign the value stored in x to 42."
+}
+
+# Mount windows drive read-only.
+# Useful becase Windows boots so slow.
+mountwin(){
+    sudo mount -t "ntfs" -ro "uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000" "/dev/sda3" "/media/chad/Windows"
 }

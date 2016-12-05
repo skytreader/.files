@@ -1,15 +1,34 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 # A collection of installs for my preferred Ubuntu customizations.
 
+# From http://askubuntu.com/a/447677/36150
+echo "Resizing workspaces"
+dconf write /org/compiz/profiles/unity/plugins/core/hsize 3
+dconf write /org/compiz/profiles/unity/plugins/core/vsize 3
+
 # Install virtualenv via virtualenv burrito
-curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+if [ ! -d ~/.virtualenvs ]; then
+    echo "Installing virtualenv"
+    curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+fi
+
+# Install f.lux
+echo "Installing f.lux"
+sudo apt-get install python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1
+cd /tmp
+git clone "https://github.com/xflux-gui/xflux-gui.git"
+cd xflux-gui
+python download-xflux.py
+python setup.py install --user
 
 ##########################
 # Add all PPA's here
 ##########################
-sudo add-apt-repository ppa:webupd8team/java
+echo "Installing additional packages..."
+sudo add-apt-repository -y ppa:webupd8team/java
 
 sudo apt-get update
 
-sudo apt-get install -y compizconfig-settings-manager oracle-java8-installer ppa-purge traceroute tree unity-tweak-tool xclip
+sudo apt-get install -y ppa-purge traceroute tree unity-tweak-tool vim xclip
+sudo apt-get install -y oracle-java8-installer
