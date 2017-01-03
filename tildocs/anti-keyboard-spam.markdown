@@ -40,6 +40,13 @@ else (the distinction between scan codes and key codes is in the man page for
 
 Not yet sure if this will solve `F4` effects on startup.
 
+## Update: January 3, 2017
+
+Not having used my work laptop for the whole of the holiday break, I return to
+work to find its battery drained. On top of that, it seems that the previous
+remapping via `setkeycodes` is no longer working. So more than just doing as
+described above, include the `setkeycode`call to the crontab of root user.
+
 See also:
 
 - [Linux password changed. Is this an attack or a hardware glitch?](http://security.stackexchange.com/questions/67845/linux-password-changed-is-this-an-attack-or-a-hardware-glitch)
