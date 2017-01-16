@@ -1,6 +1,8 @@
 # Takes in a filename of a file _inside_ the dotfiles repo
 function transfer() {
-    cp ~/.$1 ~/$1.bak
+    if [ -e "$1" ]; then
+        cp ~/.$1 ~/$1.bak
+    fi
     cp $1 ~/.$1
     sudo cp /root/.$1 /root/.$1.bak
     sudo cp $1 /root/.$1
