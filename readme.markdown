@@ -68,7 +68,6 @@ new-machine set-up that is the purpose of this repo so I'll just credit them her
 # Miscellaneous Notes
 
 ## Installing Packages
-
 Some packages only require you to uncompress a ZIP or TAR file then add the
 uncompressed path to your `PATH` environment variable. To install such packages,
 just use `anywhere` and `anyscript`, defined in `bash_personal`.
@@ -80,7 +79,6 @@ However, if it is a directory, it is not directly invokable yet. So use...
 whatever needs to be invoked in the directory you just moved to `/opt/bin`.
 
 ## On `JAVA_HOME`
-
 Android Studio and Apache Maven has conflicting ideas on where `JAVA_HOME` should
 be. Android Studio wants it to contain the directory where the JDK (i.e., `javac`)
 can be found. Maven, on the other hand, wants it where `bin/javac` can be found.
@@ -89,3 +87,11 @@ To remedy this, my set-up of Android Studio (see note above) creates a script
 with its own `export JAVA_HOME` directive just before firing up the IDE.
 
 Maven takes precedence in my `bashrc` since I use it more often.
+
+## Configs
+The files in the `config` directory are meant to be sent to the default
+`~/.config` directory. After adding/modifying config files, do
+
+    cp -r config/* ~/.config
+
+Notice the form of the invocation: this ensures that both directories are "merged".
