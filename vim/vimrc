@@ -60,6 +60,7 @@ set ai
 set ts=4
 set expandtab
 set colorcolumn=80
+set modeline
 highlight ColorColumn ctermbg=Yellow
 " To remember last position in file
 " Taken from http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
