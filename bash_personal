@@ -175,3 +175,7 @@ mancp(){
 mountwin(){
     sudo mount -t "ntfs" -ro "uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000" "/dev/sda3" "/media/chad/Windows"
 }
+
+docker_img_cleanup(){
+    docker images -a | grep none | awk '{print $3}' | xargs docker rmi
+}
