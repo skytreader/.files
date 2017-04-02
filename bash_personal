@@ -177,5 +177,5 @@ mountwin(){
 }
 
 docker_img_cleanup(){
-    docker images -a | grep none | awk '{print $3}' | xargs docker rmi
+    docker images -a | grep none | awk '{print $3}' | xargs docker rmi -f
 }
