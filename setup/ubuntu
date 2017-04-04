@@ -2,6 +2,9 @@
 
 # A collection of installs for my preferred Ubuntu customizations.
 
+# Set compose key
+gsettings set org.gnome.desktop.input-sources xkb-options "['compose:lwin']"
+
 # Install virtualenv via virtualenv burrito
 if [ ! -d ~/.virtualenvs ]; then
     echo "Installing virtualenv"

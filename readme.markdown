@@ -1,12 +1,12 @@
 # .files
 My personal Linux config files. I am using this on the following platforms:
 
-- Ubuntu 14.04 with bash 4.3.11(1)-release
 - Ubuntu 16.04 with bash 4.3.46(1)-release
 
 # bashrc set-up on a new machine
 
 ## Pre-set-up set-up
+
 Some gotcha's for complete user-friendliness.
 
     ~$ sudo apt-get install git
