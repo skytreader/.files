@@ -62,8 +62,8 @@ anywhere(){
         sudo cp -r $1 /opt/bin/
     else
         sudo cp $1 /opt/bin
+        sudo chmod +x /opt/bin/$1
     fi
-    sudo chmod +x /opt/bin/$1
 }
 
 # Create a run script in /opt/bin (with anywhere, do this to keep your binaries
