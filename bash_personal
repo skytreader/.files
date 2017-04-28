@@ -57,8 +57,8 @@ bake(){
 # Move specified file/directory to /opt/bin so that it is executable _anywhere_
 # on the file system.
 anywhere(){
-    type = `file $1 | awk '{print $2}'`
-    if [type == "directory"]; then
+    type="$(file $1 | awk '{print $2}')"
+    if [ "$type" == "directory" ]; then
         sudo cp -r $1 /opt/bin/
     else
         sudo cp $1 /opt/bin
