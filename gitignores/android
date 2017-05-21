@@ -1,0 +1,9 @@
+gradle.properties
+*.iml
+*.swp
+*~
+*.out
+*.log
+*.log.*
+*.bak
+*.class
