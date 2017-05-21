@@ -1,5 +1,3 @@
-gradle.properties
-*.iml
 *.swp
 *~
 *.out
@@ -7,3 +5,12 @@ gradle.properties
 *.log.*
 *.bak
 *.class
+gradle.properties
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
