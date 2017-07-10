@@ -90,7 +90,7 @@ alias l='ls -CF'
 export PATH=$PATH:/opt/bin
 
 # Configure Maven
-maven_ver="3.3.3"
+maven_ver="3.5.0"
 export M2_HOME="/opt/bin/apache-maven-$maven_ver"
 export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
