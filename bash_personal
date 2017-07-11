@@ -1,5 +1,10 @@
 # Chad's personal commands
 
+# Use this to check the version of dotfiles installed
+dfiles_ver(){
+    echo "1.0.0"
+}
+
 # Create a directory and switch to it.
 msdir(){
     mkdir $1
