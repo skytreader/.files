@@ -39,6 +39,9 @@ used (currently only `ubuntu`).
 need to manually `source ~/.bashrc` (i.e., don't put those two lines in a script
 anymore).
 
+For a quick check on possibly-outdated bash functions, the `dfiles_ver` command
+is provided.
+
 # vim set-up on a new machine
 Assuming setup script for your distro has been run (it should install `vim` if
 it is not included by default), just copy the whole `vim` directory in
