@@ -91,9 +91,8 @@ export PATH=$PATH:/opt/bin
 
 # Configure Maven
 maven_ver="3.5.0"
-export M2_HOME="/opt/bin/apache-maven-$maven_ver"
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
+export M3_HOME="/usr"
+export M3=$M3_HOME/bin
 export JAVA_HOME="/usr"
 
 # Add an "alert" alias for long running commands.  Use like so:
