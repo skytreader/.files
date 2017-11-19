@@ -196,5 +196,6 @@ crawl(){
     # ebooks off websites. Just pass the URL of the directory to download.
     # (Legality of action not checked.)
     # From: https://stackoverflow.com/a/273776/777225
+    # Note: replace -nd with -x if you want to preserve directory structure.
     wget -e robots=off -r -nH -nd -np -R index.html* $1
 }
