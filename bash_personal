@@ -2,7 +2,7 @@
 
 # Use this to check the version of dotfiles installed
 dfiles_ver(){
-    echo "1.1.0"
+    echo "1.1.1"
 }
 
 # Create a directory and switch to it.
@@ -196,5 +196,5 @@ crawl(){
     # ebooks off websites. Just pass the URL of the directory to download.
     # (Legality of action not checked.)
     # From: https://stackoverflow.com/a/273776/777225
-    wget -r -nH -nd -np -R index.html* $1
+    wget -e robots=off -r -nH -nd -np -R index.html* $1
 }
