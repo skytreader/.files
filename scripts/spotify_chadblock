@@ -1,0 +1,13 @@
+#! /bin/bash
+
+while true; do
+    trackid=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | sed -n '/trackid/{n;p}' | cut -d '"' -f 2`
+    if [ "${trackid/spotify:ad:}" != $trackid ] ; then
+        echo "It's an ad!"
+        amixer set 'Master' 0%
+    else
+        echo "It's a song!"
+        amixer set 'Master' 60%
+    fi
+    sleep 1
+done
