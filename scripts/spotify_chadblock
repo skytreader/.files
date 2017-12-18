@@ -1,5 +1,11 @@
 #! /bin/bash
 
+if [ -z "$1" ]; then
+    volume=60
+else
+    volume=$1
+fi
+
 while true; do
     trackid=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | sed -n '/trackid/{n;p}' | cut -d '"' -f 2`
     if [ "${trackid/spotify:ad:}" != $trackid ] ; then
@@ -7,7 +13,7 @@ while true; do
         amixer set 'Master' 0%
     else
         echo "It's a song!"
-        amixer set 'Master' 60%
+        amixer set 'Master' $volume%
     fi
     sleep 1
 done
