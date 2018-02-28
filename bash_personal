@@ -199,3 +199,8 @@ crawl(){
     # Note: replace -nd with -x if you want to preserve directory structure.
     wget -e robots=off -r -nH -nd -np -R index.html* $1
 }
+
+claste(){
+    # See https://unix.stackexchange.com/a/196574
+    printf "\e[?2004l"
+}
