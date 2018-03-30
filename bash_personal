@@ -208,4 +208,8 @@ line(){
         return 1
     fi
     head -n $1 $2 | tail -n 1
+
+claste(){
+    # See https://unix.stackexchange.com/a/196574
+    printf "\e[?2004l"
 }
