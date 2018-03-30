@@ -1,6 +1,6 @@
 #! /bin/bash
 
-for chapter in {1..20}
+for chapter in {42..621}
 do
-    wget -v "http://www.press.uchicago.edu/books/HOC/HOC_V2_B1/HOC_VOLUME2_Book1_chapter$chapter.pdf" -P ~/Documents/HOCv2/
+    wget -v "http://www.press.uchicago.edu/books/HOC/HOC_V3_Pt2/HOC_VOLUME3_Part2_chapter$chapter.pdf" -P ~/Documents/HOCv2/
 done
