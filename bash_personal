@@ -2,7 +2,7 @@
 
 # Use this to check the version of dotfiles installed
 dfiles_ver(){
-    echo "1.1.1"
+    echo "1.1.2"
 }
 
 # Create a directory and switch to it.
@@ -198,4 +198,14 @@ crawl(){
     # From: https://stackoverflow.com/a/273776/777225
     # Note: replace -nd with -x if you want to preserve directory structure.
     wget -e robots=off -r -nH -nd -np -R index.html* $1
+}
+
+# display the nth line of the given file.
+# Usage: line n file
+line(){
+    if [ $# -ne 2 ]; then
+        echo "Usage: line n file"
+        return 1
+    fi
+    head -n $1 $2 | tail -n 1
 }
