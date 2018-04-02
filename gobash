@@ -14,6 +14,7 @@ host='$(hostname)'
 echo "Installing new dotfiles, don't forget to increment the version!"
 transfer bashrc
 transfer bash_personal
+transfer bash_aliases
 
 if [ '$host' != '$CURRENT_PERSONAL_COMPUTER' ]; then
     transfer work_customizations
