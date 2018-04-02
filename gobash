@@ -8,7 +8,15 @@ function transfer() {
     sudo cp $1 /root/.$1
 }
 
+CURRENT_PERSONAL_COMPUTER='scheherazade'
+host='$(hostname)'
+
 echo "Installing new dotfiles, don't forget to increment the version!"
 transfer bashrc
 transfer bash_personal
+
+if [ '$host' != '$CURRENT_PERSONAL_COMPUTER' ]; then
+    transfer work_customizations
+fi
+
 echo "Now do \`source ~/.bashrc\` for your changes to take effect in current session."
