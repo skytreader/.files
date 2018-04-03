@@ -1,2 +1,7 @@
+# vim: set ft=sh:
+# For Kalibrr
 kcl_context="$(kubectl config current-context)"
-PS1='[$kcl_context]${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+
+if [ "$kcl_context" != "" ]; then
+    PS1='[$kcl_context]${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+fi
