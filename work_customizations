@@ -30,4 +30,4 @@ check_kcl_context(){
     fi
 }
 
-trap check_kcl_context DEBUG
+PROMPT_COMMAND=check_kcl_context
