@@ -2,14 +2,15 @@
 # For Kalibrr
 
 is_cmd_kcl_switchable(){
-    # echo "$1 | $2"
-    if [ "$1" == "kubectl" ] || [ "$1" == "kcl" ]; then
-        if [ "$2" == "use-context" ] || [ "$2" == "set-context" ]; then
+    # Expects the command to start with the history line number so checks are
+    # translated +1.
+    if [ "$2" == "kubectl" ] || [ "$2" == "kcl" ]; then
+        if [ "$3" == "use-context" ] || [ "$3" == "set-context" ]; then
             true
         fi
-    elif [ "$1" == "gcloud" ]; then
+    elif [ "$2" == "gcloud" ]; then
         # Shortcut haha
-        if [ "$4" == "get-credentials" ]; then
+        if [ "$5" == "get-credentials" ]; then
             true
         fi
     else
@@ -18,7 +19,8 @@ is_cmd_kcl_switchable(){
 }
 
 check_kcl_context(){
-    last_command="$(history | tail -n1 | awk '{$1="";print substr($0, 2)}')"
+    #last_command="$(history | tail -n1 | awk '{$1="";print substr($0, 2)}')"
+    last_command="$(history | tail -n1)"
     if [[ $(is_cmd_kcl_switchable "$last_command") -eq 0 ]] ; then
         kcl_context="$(kubectl config current-context)"
         
