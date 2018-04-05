@@ -1,13 +1,33 @@
 # vim: set ft=sh:
 # For Kalibrr
 
-check_kcl_context(){
-    kcl_context="$(kubectl config current-context)"
-    
-    if [ "$kcl_context" != "" ]; then
-        PS1='[$kcl_context]${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+is_cmd_kcl_switchable(){
+    # echo "$1 | $2"
+    if [ "$1" == "kubectl" ] || [ "$1" == "kcl" ]; then
+        if [ "$2" == "use-context" ] || [ "$2" == "set-context" ]; then
+            true
+        fi
+    elif [ "$1" == "gcloud" ]; then
+        # Shortcut haha
+        if [ "$4" == "get-credentials" ]; then
+            true
+        fi
     else
-        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+        false
+    fi
+}
+
+check_kcl_context(){
+    #last_command="$(history | tail -n1 | awk '{$1=\"\";print substr($0, 2)}')"
+    last_command="$(fc -ln -1)"
+    if [[ $(is_cmd_kcl_switchable "$last_command") -eq 0 ]] ; then
+        kcl_context="$(kubectl config current-context)"
+        
+        if [ "$kcl_context" != "" ]; then
+            PS1='[$kcl_context]${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+        else
+            PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+        fi
     fi
 }
 
