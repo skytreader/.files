@@ -20,7 +20,7 @@ is_cmd_kcl_switchable(){
 
 check_kcl_context(){
     #last_command="$(history | tail -n1 | awk '{$1="";print substr($0, 2)}')"
-    last_command="$(history | tail -n1)"
+    last_command="$(history 1)"
     if [[ $(is_cmd_kcl_switchable "$last_command") -eq 0 ]] ; then
         kcl_context="$(kubectl config current-context)"
         
