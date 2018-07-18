@@ -32,4 +32,14 @@ check_kcl_context(){
     fi
 }
 
+kubetail(){
+    while true; do
+        kubectl get pods | grep prerender | awk '{ print $1 }' | while read -r pod ; do
+            echo "$pod:"
+            kubectl logs $pod $2 | tail -n 20
+        done
+    done
+}
+
 PROMPT_COMMAND=check_kcl_context
+PATH="~/.asdf/bin:$PATH"

@@ -1,4 +1,5 @@
 # vim: set ft=sh:
+set -e 
 # Takes in a filename of a file _inside_ the dotfiles repo
 function transfer() {
     if [ -e "$1" ]; then
