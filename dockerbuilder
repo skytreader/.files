@@ -1,0 +1,11 @@
+# vim: set ft=sh:
+set -e -x -v
+
+if [[ $# -ne 1 ]]; then
+    echo "Need the Dockerfile to build! Usage:"
+    echo "    dockerbuilder <Dockerfile subdirectory>"
+    exit 1
+fi
+
+cd "dockerfiles/$1"
+docker build -t "local/$1:latest" .
