@@ -3,7 +3,7 @@
 
 # Use this to check the version of dotfiles installed
 dfiles_ver(){
-    echo "1.1.2"
+    echo "1.2.2"
 }
 
 # Create a directory and switch to it.
@@ -216,4 +216,14 @@ line(){
 claste(){
     # See https://unix.stackexchange.com/a/196574
     printf "\e[?2004l"
+}
+
+fx(){
+    # Spin up Firefox with a blank profile.
+    firefox --new-instance --profile $(mktemp -d)
+}
+
+chrm(){
+    # Spin up Chrome with a blank profile
+    google-chrome --user-data-dir=$(mktemp -d)
 }
