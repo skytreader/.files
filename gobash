@@ -22,4 +22,6 @@ if [ "$host" != "$CURRENT_PERSONAL_COMPUTER" ]; then
     transfer work_customizations
 fi
 
-echo "Now do \`source ~/.bashrc\` for your changes to take effect in current session."
+termcount=`ls -logA /dev/pts | wc -l`
+termcount=`expr $termcount - 1`
+find /dev/pts -print0 | tail -n $termcount -z | xargs -Ixx -0 sh -c 'echo "$(whoami) updated bashrc. Please source to update." > "$1"' -- xx
