@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.3.2"
+    echo "1.3.3"
 }
 
 # Create a directory and switch to it.
@@ -71,13 +71,35 @@ bake(){
 
 # Move specified file/directory to /opt/bin so that it is executable _anywhere_
 # on the file system.
+#
+# If it is a directory, move the _contents_ of the directory into /opt/bin
+# instead. All subdirectories will be included in the same level as the normal
+# files.
 anywhere(){
-    type="$(file $1 | awk '{print $2}')"
-    if [ "$type" == "directory" ]; then
-        sudo cp -r $1 /opt/bin/
+    # Get number of files first. If it is more than one, we are probably dealing
+    # with a glob.
+    filecount="$(file $1 | wc -l)"
+    if [ $filecount -eq 1 ]; then
+        type="$(file $1 | awk '{print $2}')"
+        if [ "$type" == "directory" ]; then
+            # FIXME What if a file is a (sub)directory too?
+            file_dircount=`ls -logA $1 | wc -l`
+            file_dircount=`expr $file_dircount - 1`
+            find $1 -print0 | tail -n $file_dircount -z | xargs -I xx -0 sudo cp xx /opt/bin/
+        else
+            sudo cp $1 /opt/bin
+            sudo chmod +x /opt/bin/$1
+        fi
     else
-        sudo cp $1 /opt/bin
-        sudo chmod +x /opt/bin/$1
+        for f in $1; do
+            type="$(file $1 | wc -l)"
+            if [ "$type" == "directory" ]; then
+                sudo cp -r $1 /opt/bin
+            else
+                sudo cp $1 /opt/bin
+                sudo chmod +x /opt/bin/$1
+            fi
+        done
     fi
 }
 
