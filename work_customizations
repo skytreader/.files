@@ -34,7 +34,7 @@ check_kcl_context(){
 
 kubetail(){
     while true; do
-        kubectl get pods | grep prerender | awk '{ print $1 }' | while read -r pod ; do
+        kubectl get pods | grep $1 | awk '{ print $1 }' | while read -r pod ; do
             echo "$pod:"
             kubectl logs $pod $2 | tail -n 20
         done
