@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.3.3"
+    echo "1.4.3"
 }
 
 # Create a directory and switch to it.
@@ -263,4 +263,29 @@ chrm(){
 # needle ($2) with replacement ($3). Smart enough to skip binary files.
 sused(){
     grep -rlI $2 $1 | xargs sed -i "s/$2/$3/g"
+}
+
+# Send a message to all terminals.
+notify_terms(){
+    termcount=`ls -logA /dev/pts | wc -l`
+    termcount=`expr $termcount - 1`
+    find /dev/pts -print0 | tail -n $termcount -z | xargs -Ixx -0 sh -c 'echo $2 > "$1"' -- xx "$@"
+}
+
+# Remind me in x seconds about something.
+# Usage: remindme <in seconds> "<message>"
+remindme(){
+    seconds=$1
+    shift
+    message=""
+    for i in "$@"; do
+        # Unintended side-effect: We can't have more than one whitespace betwen
+        # words!
+        message+=" $i"
+    done
+    me="$(whoami)"
+    sleep $seconds
+    notify_terms "Reminder for $me: $message"
+    spd-say "Reminder for $me: $message"
+    notify-send --urgency=critical "Reminder for $me: $message"
 }
