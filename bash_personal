@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.4.4"
+    echo "1.4.5"
 }
 
 # Create a directory and switch to it.
@@ -196,7 +196,8 @@ list_pkgs(){
 }
 
 wttr(){
-    curl wttr.in/$1
+    sanitized=`echo $@ | sed 's/ /%20/g'`
+    curl "wttr.in/$sanitized"
 }
 
 # The One True Way
