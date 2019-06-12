@@ -1,13 +1,11 @@
 # vim: set ft=sh:
-set -e 
+set -e -x
 # Takes in a filename of a file _inside_ the dotfiles repo
 function transfer() {
-    if [ -e "$1" ]; then
+    if [ -e "~/.$1" ]; then
         cp ~/.$1 ~/$1.bak
     fi
     cp $1 ~/.$1
-    sudo cp /root/.$1 /root/.$1.bak
-    sudo cp $1 /root/.$1
 }
 
 CURRENT_PERSONAL_COMPUTER='scheherazade'
