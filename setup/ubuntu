@@ -26,9 +26,9 @@ python setup.py install --user
 # Add all PPA's here
 ##########################
 echo "Installing additional packages..."
-sudo add-apt-repository -y ppa:webupd8team/java
 
+# Without adding new PPAs above this line is kinda pointless. Kept here as a
+# just-in-case scenario (it won't hurt).
 sudo apt-get update
 
 sudo apt-get install -y ppa-purge traceroute tree unity-tweak-tool vim xclip
-sudo apt-get install -y oracle-java8-installer
