@@ -89,15 +89,13 @@ alias l='ls -CF'
 # Add /opt/bin to PATH
 export PATH=$PATH:/opt/bin
 
-# Configure Maven
-maven_ver="3.5.0"
-export M3_HOME="/usr"
-export M3=$M3_HOME/bin
-export JAVA_HOME="/usr"
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+if [ -f ~/.envvars ]; then
+    . ~/.envvars
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -127,4 +125,8 @@ fi
 # Load my personal preferences, if it's there.
 if [ -f ~/.bash_personal ]; then
     . ~/.bash_personal
+fi
+
+if [ ! -z "$WORK_ENV" ]; then
+    . ~/."$WORK_ENV"
 fi

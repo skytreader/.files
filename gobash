@@ -1,24 +1,32 @@
 # vim: set ft=sh:
-set -e -x
-# Takes in a filename of a file _inside_ the dotfiles repo
+set -e
+
+# Takes in a filename of a file _inside_ the dotfiles repo and copies it to the
+# root of the home directory.
 function transfer() {
     if [ -e "~/.$1" ]; then
         cp ~/.$1 ~/$1.bak
     fi
-    cp $1 ~/.$1
+    plain_file_name=`echo $1 | awk -F/ '{print $NF}'`
+    cp $1 ~/.$plain_file_name
 }
+
+source envvars
 
 CURRENT_PERSONAL_COMPUTER='scheherazade'
 host="$(hostname)"
 
+if [ "$host" != "$CURRENT_PERSONAL_COMPUTER" ] && [ ! -z "$WORK_ENV" ]; then
+    transfer work-customizations/$WORK_ENV
+elif [ -z "$WORK_ENV" ]; then
+    echo "WORK_ENV variable not set. Not fatal but this is not ideal."
+fi
+
 echo "Installing new dotfiles, don't forget to increment the version!"
 transfer bashrc
+transfer envvars
 transfer bash_personal
 transfer bash_aliases
-
-if [ "$host" != "$CURRENT_PERSONAL_COMPUTER" ]; then
-    transfer work_customizations
-fi
 
 termcount=`ls -logA /dev/pts | wc -l`
 termcount=`expr $termcount - 1`

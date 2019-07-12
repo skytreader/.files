@@ -1,0 +1,8 @@
+# vim: set ft=sh:
+
+maven_ver="3.5.0"
+export M3_HOME="/usr"
+export M3=$M3_HOME/bin
+export JAVA_HOME="/usr"
+
+export WORK_ENV='goodgame'
