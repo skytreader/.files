@@ -1,4 +1,8 @@
 # vim: set ft=sh:
 
+# This is currently not in any use here; the fallback is handled already by
+# envvars. Mostly for documentation of what might change, I guess. compare with
+# work-customizations/goodgame.
+
 export M3_HOME="/usr"
 export JAVA_HOME="/usr"
