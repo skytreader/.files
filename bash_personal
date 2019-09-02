@@ -12,8 +12,10 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.4.5"
+    echo "1.5.5"
 }
+
+alias mypy='mypy --ignore-missing-imports'
 
 # Create a directory and switch to it.
 msdir(){
