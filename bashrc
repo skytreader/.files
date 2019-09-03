@@ -127,6 +127,6 @@ if [ -f ~/.bash_personal ]; then
     . ~/.bash_personal
 fi
 
-if [ ! -z "$WORK_ENV" ]; then
+if [ ! -z "$WORK_ENV" ] && [ -f ~/."$WORK_ENV" ]; then
     . ~/."$WORK_ENV"
 fi
