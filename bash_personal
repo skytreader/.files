@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.5.5"
+    echo "1.6.5"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -293,4 +293,9 @@ remindme(){
     notify_terms "Reminder for $me: $message"
     spd-say "Reminder for $me: $message"
     notify-send --urgency=critical "Reminder for $me: $message"
+}
+
+# get access token
+gat(){
+    xclip -sel clip <~/.ssh/access_tokens/$1
 }
