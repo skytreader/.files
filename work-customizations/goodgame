@@ -8,3 +8,20 @@ gittheworks(){
     git config user.name "Chad Estioco"
     git config user.email "cestioco@goodgamestudios.com"
 }
+
+# Roll out our own virtualenvwrapper commands because Python2 is making life
+# harder than it should be.
+#
+# Reference: https://packaging.python.org/tutorials/installing-packages/#optionally-create-a-virtual-environment
+
+if [ ! -d ~/.virtualenvs ]; then
+    mkdir ~/.virtualenvs
+fi
+
+mkvirtualenv(){
+    python3 -m venv ~/.virtualenvs/$1 && workon $1
+}
+
+workon(){
+    source ~/.virtualenvs/$1/bin/activate
+}
