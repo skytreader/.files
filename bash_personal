@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.6.5"
+    echo "1.7.5"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -206,6 +206,10 @@ wttr(){
 # Also see `python -m compileall`
 pycheck(){
     python -m py_compile $1
+}
+
+pycd(){
+    pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`
 }
 
 mancp(){
