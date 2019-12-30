@@ -18,6 +18,10 @@ if [ ! -d ~/.virtualenvs ]; then
     mkdir ~/.virtualenvs
 fi
 
+lsvirtualenv() {
+    ls -td ~/.virtualenvs/*/ | awk -F '/' '{print $(NF-1)}'
+}
+
 mkvirtualenv(){
     python3 -m venv ~/.virtualenvs/$1 && workon $1
 }

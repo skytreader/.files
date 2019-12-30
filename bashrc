@@ -123,10 +123,6 @@ if [ -f ~/.venvburrito/startup.sh ]; then
     . ~/.venvburrito/startup.sh
 fi
 
-if type lsvirtualenv > /dev/null; then
-    alias lsvirtualenv='lsvirtualenv -b'
-fi
-
 # Load my personal preferences, if it's there.
 if [ -f ~/.bash_personal ]; then
     . ~/.bash_personal
@@ -134,4 +130,8 @@ fi
 
 if [ ! -z "$WORK_ENV" ] && [ -f ~/."$WORK_ENV" ]; then
     . ~/."$WORK_ENV"
+fi
+
+if type lsvirtualenv > /dev/null; then
+    alias lsvirtualenv='lsvirtualenv -b'
 fi
