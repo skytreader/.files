@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.8.5"
+    echo "1.9.5"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -312,3 +312,12 @@ vpl(){
         sleep $(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv="p=0")
     done
 }
+
+# This is supposed to be in work customizations but its something that would be
+# nice to have in general regardless. In other issues, maybe have a base set of
+# custom work commands.
+mk_ansible_role(){
+    mkdir -p $1/{files,tasks,templates}
+    touch $1/tasks/main.yml
+}
+
