@@ -12,63 +12,81 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
+    set -e -u
     echo "1.10.5"
+    set +e +u
 }
 
 alias mypy='mypy --ignore-missing-imports'
 
 # Create a directory and switch to it.
 msdir(){
+    set -e -u
     mkdir $1
     cd $1
+    set +e +u
 }
 
 # Duplicate a file and edit the duplicate (with vi(m)).
 cped(){
+    set -e -u
     cp $1 $2
     vi $2
+    set +e +u
 }
 
 # Move a file and edit the new file (with vi(m)).
 mved(){
+    set -e -u
     mv $1 $2
     vi $2
+    set +e +u
 }
 
 # Create a new executable file (with vi(m)).
 xvi(){
+    set -e -u
     vi $1
     chmod +x $1
+    set +e +u
 }
 
 # Clean ps -eaf | grep
 pid(){
+    set -e -u
     grepstr=$1
     greplen=${#grepstr}
     grepfirst=${grepstr:0:1}
     greprest=${grepstr:1:$greplen-1}
     grepexp="[$grepfirst]$greprest"
     ps -eaf | grep "$grepexp"
+    set +e +u
 }
 
 # Get the most used commands in bash
 # Taken from a tip in CoderWall
 stats(){
+    set -e -u
     if [ -z "$1" ]; then
         history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
     else
         history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head -n $1
     fi
+    set +e +u
 }
 
 brc(){
+    set -e -u
     source ~/.bashrc
+    set +e +u
 }
 
 # This one is from nixCraft
 # Edit files with automatic back-up
 bake(){
+    set -e -u
     [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d-%m-%y-%H.%M.%S`; vi "$1";
+    set +e +u
 }
 
 # Move specified file/directory to /opt/bin so that it is executable _anywhere_
@@ -78,6 +96,7 @@ bake(){
 # instead. All subdirectories will be included in the same level as the normal
 # files.
 anywhere(){
+    set -e -u
     # Get number of files first. If it is more than one, we are probably dealing
     # with a glob.
     filecount="$(file $1 | wc -l)"
@@ -103,36 +122,44 @@ anywhere(){
             fi
         done
     fi
+    set +e +u
 }
 
 # Create a run script in /opt/bin (with anywhere, do this to keep your binaries
 # organized).
 anyscript(){
+    set -e -u
     sudo vi /opt/bin/$1
     sudo chmod +x /opt/bin/$1
+    set +e +u
 }
 
 # Automagically daemonize the process you will execute.
 daemonize(){
+    set -e -u
     procstring=""
     for i in "$@"
     do
         procstring+=" $i"
     done
     nohup $procstring < /dev/null > daemonize.out 2>&1&
+    set +e +u
 }
 
 # If you have maven installed, a maven quickstart give it the group id and the
 # artifact id
 # sample usage `mvnstart net.skytreader.kode chess-templar`
 mvnstart(){
+    set -e -u
     mvn archetype:generate -DgroupId=$1 -DartifactId=$2 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+    set +e +u
 }
 
 # Automatically set-up vim syntax stuff. Assumes that you are in the root of a
 # directory with subdirectories like ftplugin, indent, syntax, plugin. The vim
 # stuff is installed locally to the user.
 vip(){
+    set -e -u
     if [ ! -d ~/.vim ]; then
         mkdir ~/.vim
     fi
@@ -186,97 +213,128 @@ vip(){
     if [ -d plugin ]; then
         cp plugin/* ~/.vim/plugin
     fi
+    set +e +u
 }
 
 find_large_files(){
+    set -e -u
     du -a $1 | sort -n -r | head -n $2
+    set +e +u
 }
 
 # List packages following a specific pattern. WARNING: Ubuntu-specific.
 list_pkgs(){
+    set -e -u
     dpkg --get-selections | grep $1
+    set +e +u
 }
 
 wttr(){
+    set -e -u
     sanitized=`echo $@ | sed 's/ /%20/g'`
     curl "wttr.in/$sanitized"
+    set +e +u
 }
 
 # The One True Way
 # Also see `python -m compileall`
 pycheck(){
+    set -e -u
     python -m py_compile $1
+    set +e +u
 }
 
 pycd(){
+    set -e -u
     pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`
+    set +e +u
 }
 
 mancp(){
+    set -e -u
     echo "The & operator takes a piece of data and tells you where it's stored."
     echo "The * operator takes an address and tells you what is stored there."
     echo "In the LHS, the * operator behaves a bit differently:"
     echo "int *x_address = &x; // Get the address of x so you can do pointer arithmetic on it."
     echo "*x_address = 42; // Reassign the value stored in x to 42."
+    set +e +u
 }
 
 # Mount windows drive read-only.
 # Useful becase Windows boots so slow.
 mountwin(){
+    set -e -u
     sudo mount -t "ntfs" -ro "uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000" "/dev/sda3" "/media/chad/Windows"
+    set +e +u
 }
 
 docker_img_cleanup(){
+    set -e -u
     docker images -a | grep none | awk '{print $3}' | xargs docker rmi -f
+    set +e +u
 }
 
 crawl(){
+    set -e -u
     # Quick and dirty crawler (with download!) using wget. Useful for getting
     # ebooks off websites. Just pass the URL of the directory to download.
     # (Legality of action not checked.)
     # From: https://stackoverflow.com/a/273776/777225
     # Note: replace -nd with -x if you want to preserve directory structure.
     wget -e robots=off -r -nH -nd -np -R index.html* $1
+    set +e +u
 }
 
 # display the nth line of the given file.
 # Usage: line n file
 line(){
+    set -e -u
     if [ $# -ne 2 ]; then
         echo "Usage: line n file"
         return 1
     fi
     head -n $1 $2 | tail -n 1
+    set +e +u
 }
 
 # When SSH sessions to gcloud servers timeout, they usually end up adding stray
 # characters to copy pastes. Use this command to stop that.
 claste(){
+    set -e -u
     # See https://unix.stackexchange.com/a/196574
     printf "\e[?2004l"
+    set +e +u
 }
 
 fx(){
+    set -e -u
     # Spin up Firefox with a blank profile.
     firefox --new-instance --profile $(mktemp -d)
+    set +e +u
 }
 
 chrm(){
+    set -e -u
     # Spin up Chrome with a blank profile
     google-chrome --user-data-dir=$(mktemp -d)
+    set +e +u
 }
 
 # Super sed. Given a directory/file pattern ($1), replace all occurences of
 # needle ($2) with replacement ($3). Smart enough to skip binary files.
 sused(){
+    set -e -u
     grep -rlI $2 $1 | xargs sed -i "s/$2/$3/g"
+    set +e +u
 }
 
 # Send a message to all terminals.
 notify_terms(){
+    set -e -u
     termcount=`ls -logA /dev/pts | wc -l`
     termcount=`expr $termcount - 1`
     find /dev/pts -print0 | tr \\000 \\n | tail -n $termcount | grep -v ptmx | xargs -Ixx sh -c 'echo $2 > "$1"' -- xx "$@"
+    set +e +u
 }
 
 # Remind me in x seconds about something.
@@ -284,6 +342,7 @@ notify_terms(){
 # Although putting this in background is not required, it is recommended so you
 # don't need a dedicated terminal just for a reminder.
 remindme(){
+    set -e -u
     seconds=$1
     shift
     message=""
@@ -297,31 +356,40 @@ remindme(){
     notify_terms "Reminder for $me: $message"
     spd-say "Reminder for $me: $message"
     notify-send --urgency=critical "Reminder for $me: $message"
+    set +e +u
 }
 
 # get access token
 gat(){
+    set -e -u
     xclip -sel clip <~/.ssh/access_tokens/$1
+    set +e +u
 }
 
 # Invoke this command on a directory containing only videos and these videos
 # will be played one after the other consecutively.
 vpl(){
+    set -e -u
     for video in *; do
         xdg-open "$video"
         sleep $(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv="p=0")
     done
+    set +e +u
 }
 
 # This is supposed to be in work customizations but its something that would be
 # nice to have in general regardless. In other issues, maybe have a base set of
 # custom work commands.
 mk_ansible_role(){
+    set -e -u
     mkdir -p $1/{files,tasks,templates}
     touch $1/tasks/main.yml
+    set +e +u
 }
 
 
 docker_prufen(){
+    set -e -u
     docker run -it --entrypoint /bin/bash $1
+    set +e +u
 }
