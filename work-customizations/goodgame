@@ -2,7 +2,7 @@
 
 export M3_HOME="/opt"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-alias sls='./node_modules/serverless/bin/serverless'
+alias sls='./node_modules/serverless/bin/serverless.js'
 
 gittheworks(){
     git config user.name "Chad Estioco"
