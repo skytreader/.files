@@ -2,6 +2,7 @@
 
 # A collection of installs for my preferred Ubuntu customizations.
 
+sudo apt install curl
 sudo mkdir /opt/bin
 
 # Set compose key

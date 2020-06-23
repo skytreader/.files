@@ -12,7 +12,7 @@ Some gotcha's for complete user-friendliness.
     ~$ sudo apt-get install git
     ~$ mkdir kode
 
-Optionally, install virtualenv via [virtualenv-burrito](https://github.com/brainsik/virtualenv-burrito). Not needed but some
+Optionally, install virtualenv via [virtualenv-burrito](https://github.com/skytreader/virtualenv-burrito). Not needed but some
 errors might occur during set-up because some aliases are for virtualenvs.
 
     curl -sL https://raw.githubusercontent.com/skytreader/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
