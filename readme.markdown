@@ -15,7 +15,7 @@ Some gotcha's for complete user-friendliness.
 Optionally, install virtualenv via [virtualenv-burrito](https://github.com/brainsik/virtualenv-burrito). Not needed but some
 errors might occur during set-up because some aliases are for virtualenvs.
 
-    curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
+    curl -sL https://raw.githubusercontent.com/skytreader/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
 
 ## Actual set-up
 
