@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.11.1"
+    echo "1.12.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -327,4 +327,8 @@ docker_prufen(){
 
 docker_laufen(){
     docker run --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix local/$1:latest
+}
+
+gitstalt(){
+    git log --graph --all --pretty --decorate --oneline
 }
