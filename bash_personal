@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.12.0"
+    echo "1.13.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -311,6 +311,14 @@ vpl(){
         xdg-open "$video"
         sleep $(ffprobe -i "$video" -show_entries format=duration -v quiet -of csv="p=0")
     done
+}
+
+# tabs to spaces! Edits the file in a non-destructive manner.
+# Usage: tts 4 sony.py
+tts(){
+    newfile="$(echo $RANDOM).ttstmp"
+    expand -t "$1" "$2" > "/tmp/$newfile"
+    cat "/tmp/$newfile" > $2
 }
 
 # This is supposed to be in work customizations but its something that would be
