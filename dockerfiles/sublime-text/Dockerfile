@@ -6,4 +6,7 @@ RUN apt-get update && \
     echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list && \
     apt-get update && \
     apt-get install sublime-text
+RUN useradd -m -U -s /bin/bash sublime
+USER sublime
+WORKDIR /home/sublime
 ENTRYPOINT "/opt/sublime_text/sublime_text"
