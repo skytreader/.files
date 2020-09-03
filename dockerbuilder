@@ -8,4 +8,13 @@ if [[ $# -ne 1 ]]; then
 fi
 
 cd "dockerfiles/$1"
-docker build -t "local/$1:latest" .
+
+if [[ $1 == "base" ]]; then
+    docker build -t "local/base:latest" \
+                 --build-arg userid=$UID \
+                 --build-arg username=$USERNAME \
+                 --no-cache \
+                 .
+else
+    docker build -t "local/$1:latest" --no-cache --build-arg username=$USERNAME .
+fi
