@@ -12,9 +12,9 @@ cd "dockerfiles/$1"
 if [[ $1 == "base" ]]; then
     docker build -t "local/base:latest" \
                  --build-arg userid=$UID \
-                 --build-arg username=$USERNAME \
+                 --build-arg username=$USER \
                  --no-cache \
                  .
 else
-    docker build -t "local/$1:latest" --no-cache --build-arg username=$USERNAME .
+    docker build -t "local/$1:latest" --no-cache --build-arg username=$USER .
 fi
