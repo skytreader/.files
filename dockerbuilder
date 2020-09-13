@@ -9,6 +9,11 @@ fi
 
 cd "dockerfiles/$1"
 
+if [[ -e nogui ]]; then
+    echo "This is a nogui app. Please build with the traditional Docker invocation."
+    exit 1
+fi
+
 if [[ $1 == "base" ]]; then
     docker build -t "local/base:latest" \
                  --build-arg userid=$UID \
