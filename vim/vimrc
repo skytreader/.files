@@ -58,6 +58,7 @@ set ruler
 set number
 set ai
 set ts=4
+set sw=0
 set expandtab
 set colorcolumn=80
 set modeline
