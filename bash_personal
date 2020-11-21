@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.13.1"
+    echo "1.14.1"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -339,4 +339,17 @@ docker_laufen(){
 
 gitstalt(){
     git log --graph --all --pretty --decorate --oneline
+}
+
+# Sourcery from https://askubuntu.com/a/17300/36150
+# If you can be bothered, a more readable format is on https://github.com/gkotian/gautam_linux/blob/master/scripts/colours.sh.
+ls_legend(){
+    eval $(echo "no:global default;fi:normal file;di:directory;ln:symbolic link;pi:named pipe;so:socket;do:door;bd:block device;cd:character device;or:orphan symlink;mi:missing file;su:set uid;sg:set gid;tw:sticky other writable;ow:other writable;st:sticky;ex:executable;"|sed -e 's/:/="/g; s/\;/"\n/g')
+	{
+	  IFS=:
+	  for i in $LS_COLORS
+	  do
+	    echo -e "\e[${i#*=}m$( x=${i%=*}; [ "${!x}" ] && echo "${!x}" || echo "$x" )\e[m"
+	  done
+	}
 }
