@@ -1,0 +1,47 @@
+"""
+Construct guitar TABlature from an input language. The input language is as so:
+
+    fingerpos = <string number> <fret>
+    zeitpunkt = <fingerpos>(, <fingerpos>)*\n
+
+String number takes the convention that the first string is the low E string in
+standard tuning.
+
+And the input file/stream is just a series of zeitpunkten.
+"""
+from typing import Iterable, List, Tuple
+import sys
+
+def chordstructor(zeitpunkten: Iterable[Iterable[Tuple[int, int]]]) -> str:
+    lines: List[List[str]] = [['|'] for _ in range(6)]
+    strings = set(range(6))
+
+    for zp in zeitpunkten:
+        zp_used = set()
+
+        for fingerpos in zp:
+            str_in = fingerpos[0] - 1;
+            zp_used.add(str_in)
+            
+            lines[str_in] = str(fingerpos[1])
+
+        zp_blanks = strings - zp_used
+
+        for blank in zp_blanks:
+            lines[blank] = '-'
+
+    return "|\n".join(["".join(line) for line in lines])
+
+if __name__ == "__main__":
+    with open(sys.argv[1]) as infile:
+        zeitpunkten = []
+        for line in infile:
+            point = [int(x) for x in line]
+            if len(point) % 2:
+                print("'%s' should contain an even count of numbers" % line)
+                exit(1)
+            string_nums = point[::2]
+            fret_nums = point[1::2]
+            zeitpunkten.add(list(zip(string_nums, fret_nums)))
+
+        print(chordstructor(zeitpunkten))
