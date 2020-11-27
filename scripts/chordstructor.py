@@ -9,10 +9,17 @@ standard tuning.
 
 And the input file/stream is just a series of zeitpunkten.
 """
-from typing import Iterable, List, Tuple
+from typing import List, Tuple
 import sys
 
-def chordstructor(zeitpunkten: Iterable[Iterable[Tuple[int, int]]]) -> str:
+ZeitPunkten = Tuple[Tuple[Tuple[int, int]]]
+
+def measured_chordstructor(zeitpunkten: ZeitPunkten, measure: int) -> str:
+    start = 0
+    tabs = [chordstructor(zeitpunkten[_s:_s + measure]) for _s in range(0, len(zeitpunkten), measure)]
+    return "\n".join(tabs)
+
+def chordstructor(zeitpunkten: ZeitPunkten) -> str:
     lines: List[List[str]] = [['|'] for _ in range(6)]
     strings = set(range(6))
 
@@ -42,6 +49,6 @@ if __name__ == "__main__":
                 exit(1)
             string_nums = point[::2]
             fret_nums = point[1::2]
-            zeitpunkten.add(list(zip(string_nums, fret_nums)))
+            zeitpunkten.append(tuple(zip(string_nums, fret_nums)))
 
-        print(chordstructor(zeitpunkten))
+        print(measured_chordstructor(tuple(zeitpunkten)))
