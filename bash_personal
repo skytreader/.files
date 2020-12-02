@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.14.1"
+    echo "1.16.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -352,4 +352,12 @@ ls_legend(){
 	    echo -e "\e[${i#*=}m$( x=${i%=*}; [ "${!x}" ] && echo "${!x}" || echo "$x" )\e[m"
 	  done
 	}
+}
+
+clean_pip_freeze(){
+    # TODO Don't rely on writing files in /tmp -- makes this command not atomic.
+    # Look up heredocs.
+    /home/chad/.virtualenvs/origin3/bin/pip freeze | sort > /tmp/cpf-origin3
+    /home/chad/.virtualenvs/$1/bin/pip freeze | sort > /tmp/cpf-$1
+    diff --suppress-common-lines /tmp/cpf-origin3 /tmp/cpf-$1 | grep ">" | cut -c 3- > $(pwd)/requirements.txt
 }
