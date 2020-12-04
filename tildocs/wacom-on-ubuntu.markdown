@@ -34,6 +34,28 @@ different.).
 
 _However_, it does not work! I have no idea why.
 
+---
+
+**Update:** Looks like there's just something wrong with Button 2 mapping. Doing
+the same but for Button 3, i.e.,
+
+```
+xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" 3" "key +ctrl z -ctrl"
+```
+
+gave me the undo button but in the second-from-top button (instead of topmost).
+I can live with that.
+
+---
+
 For more debugging, [this](https://askubuntu.com/questions/183354/configuring-wacom-tablet-buttons-and-options/660063#660063)
 is a pretty good explanation of how to figure out valid values for `xsetwacom`
 commands.
+
+## Disable touch input
+
+You can thank me after your celebrations.
+
+```
+xsetwacom --set "Wacom Intuos Pro M Finger touch" Touch off
+```
