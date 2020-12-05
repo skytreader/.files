@@ -1,4 +1,4 @@
-# Krita
+# Krita and libz
 
 When trying to run the Krita appimage in 16.04, I ran into problems about my
 libz dependency. An update is not available in the official repositories so I
