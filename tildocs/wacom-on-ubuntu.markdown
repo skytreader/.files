@@ -40,7 +40,7 @@ _However_, it does not work! I have no idea why.
 the same but for Button 3, i.e.,
 
 ```
-xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" 3" "key +ctrl z -ctrl"
+xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "3" "key +ctrl z -ctrl"
 ```
 
 gave me the undo button but in the second-from-top button (instead of topmost).
