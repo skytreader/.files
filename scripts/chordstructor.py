@@ -2,14 +2,15 @@
 Construct guitar TABlature from an input language. The input language is as so:
 
     string number = integer
-    fret action = short string
+    fret action = short str
     fingerpos = <string number> <fret action>
     zeitpunkt = <fingerpos>(, <fingerpos>)*\n
+    comment = # <...>\n
 
 String number takes the convention that the first string is the low E string in
 standard tuning.
 
-And the input file/stream is just a series of zeitpunkten.
+And the input file/stream is just a series of zeitpunkten or comments.
 """
 from typing import List, Tuple
 import re
@@ -52,6 +53,8 @@ if __name__ == "__main__":
     with open(sys.argv[1]) as infile:
         zeitpunkten = []
         for line in infile:
+            if line[0] == '#':
+                continue
             line_parse = re.compile(",\s*").split(line)
             point: Tuple[Tuple[int, str], ...] = tuple((int(x.split()[0]), x.split()[1]) for x in line_parse)
             zeitpunkten.append(point)
