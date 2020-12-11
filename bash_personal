@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.18.0"
+    echo "1.19.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -364,7 +364,8 @@ clean_pip_freeze(){
 
 wacom_profile(){
     xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "2" "key +ctrl z -ctrl"
-    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "3" "key +z -z"
-    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "8" "key +b -b"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "3" "key +b -b"
     xsetwacom --set "Wacom Intuos Pro M Finger touch" Touch off
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelUp" "key +"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelDown" "key -"
 }
