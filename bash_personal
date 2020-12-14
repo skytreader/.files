@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.20.0"
+    echo "1.21.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -370,4 +370,15 @@ wacom_profile(){
     xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelUp" "key +"
     xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelDown" "key -"
     xsetwacom set "Wacom Intuos Pro M Pen stylus" "Button" "2" "key +ctrl z -ctrl"
+
+    # For some reason, whereas in scheherazade I was able to constrain output
+    # via the settings GUI, I can't do it in my work computer. Hence the ff.
+    # lines. You can get the monitor names via `xrandr --listactivemonitors`.
+    if [ "$(hostname)" != "scheherazade" ]; then
+        xsetwacom --set 13 MapToOutput "DP-3"
+        xsetwacom --set 14 MapToOutput "DP-3"
+        xsetwacom --set 15 MapToOutput "DP-3"
+        xsetwacom --set 23 MapToOutput "DP-3"
+        xsetwacom --set 24 MapToOutput "DP-3"
+    fi
 }
