@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.21.0"
+    echo "1.22.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -363,8 +363,7 @@ clean_pip_freeze(){
 }
 
 wacom_profile(){
-    # This is redundant now that I'm mapping undo to the pen button
-    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "2" "key +ctrl z -ctrl"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "2" "key +ctrl s -ctrl"
     xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "3" "key +b -b"
     xsetwacom --set "Wacom Intuos Pro M Finger touch" Touch off
     xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelUp" "key +"
