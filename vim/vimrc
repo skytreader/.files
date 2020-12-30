@@ -63,7 +63,7 @@ set softtabstop=4
 set expandtab
 set colorcolumn=80
 set modeline
-highlight ColorColumn ctermbg=Yellow
+highlight ColorColumn ctermbg=DarkMagenta
 " To remember last position in file
 " Taken from http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 set viminfo='10,\"100,:20,%,n~/.viminfo
