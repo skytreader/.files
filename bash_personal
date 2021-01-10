@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.23.0"
+    echo "1.23.1"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -381,10 +381,10 @@ wacom_profile(){
     # via the settings GUI, I can't do it in my work computer. Hence the ff.
     # lines. You can get the monitor names via `xrandr --listactivemonitors`.
     if [ "$(hostname)" != "scheherazade" ]; then
-        xsetwacom --set 13 MapToOutput "DP-3"
-        xsetwacom --set 14 MapToOutput "DP-3"
-        xsetwacom --set 15 MapToOutput "DP-3"
-        xsetwacom --set 23 MapToOutput "DP-3"
-        xsetwacom --set 24 MapToOutput "DP-3"
+        xsetwacom --set "Wacom Intuos Pro M Pen stylus" MapToOutput "DP-3"
+        xsetwacom --set "Wacom Intuos Pro M Pen eraser" MapToOutput "DP-3"
+        xsetwacom --set "Wacom Intuos Pro M Pen cursor" MapToOutput "DP-3"
+        xsetwacom --set "Wacom Intuos Pro M Pen pad" MapToOutput "DP-3"
+        xsetwacom --set "Wacom Intuos Pro M Pen touch" MapToOutput "DP-3"
     fi
 }
