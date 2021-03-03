@@ -33,3 +33,19 @@ graphical.target reached after 5min 22.414s in userspace
 ```
 
 I wonder if those userspace numbers are normal?
+
+## Two Different Problems
+
+There seems to be two different instances where I observe sluggishness:
+
+- When starting a fresh terminal it takes _ages_ for the prompt to be ready.
+This noticeably only happens the first time the terminal is invoked.
+- Starting browsers (Firefox and Chrome) seem unresponsive, at least initially.
+It seems to take a longer time than 16.04!
+
+The first problem seems to have been alleviated by [lazy loading NodeJS stuff](http://broken-by.me/lazy-load-nvm/)
+implemented in a1197c4ca1b.
+
+The second problem is still ongoing and I have no idea yet how to handle it.
+Maybe really finally disable mysql (I use docker too much and, as noted above,
+starting it really seems to take time. Which is disruptive for my workflow!)
