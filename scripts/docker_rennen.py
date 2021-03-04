@@ -5,7 +5,8 @@ import os
 import subprocess
 
 def compose_mounts(cwd, mounts):
-    template = "--mount type=bind,source='%s',target='%s'"
+    template = "--mount type=bind,source=%s,target=%s"
+    # TODO Handle spaces!
     mounts_composed = [
         template % (os.path.join(cwd, source), target)
         for source, target in mounts.items()
@@ -19,4 +20,6 @@ if __name__ == "__main__":
         docker_image = config["image"]
         mounts = config["mounts"]
 
-        print("docker run %s %s" % (compose_mounts(os.getcwd(), mounts), docker_image))
+        command = "docker run %s %s" % (compose_mounts(os.getcwd(), mounts), docker_image)
+        print(command)
+        subprocess.run(command.split())
