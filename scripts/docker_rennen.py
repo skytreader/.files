@@ -5,8 +5,9 @@ import os
 import subprocess
 
 def compose_mounts(cwd, mounts):
-    template = "--mount type=bind,source=%s,target=%s"
-    # TODO Handle spaces!
+    template = "--mount type=bind,source='%s',target='%s'"
+    # FIXME There's a myriad of ways `source` might be specified. I specify it
+    # relative but it should also work if it is specified as an absolute path.
     mounts_composed = [
         template % (os.path.join(cwd, source), target)
         for source, target in mounts.items()
@@ -22,4 +23,4 @@ if __name__ == "__main__":
 
         command = "docker run %s %s" % (compose_mounts(os.getcwd(), mounts), docker_image)
         print(command)
-        subprocess.run(command.split())
+        subprocess.run(command, shell=True)
