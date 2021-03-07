@@ -3,6 +3,7 @@
 import json
 import os
 import subprocess
+import sys
 
 def compose_mounts(cwd, mounts):
     template = "--mount type=bind,source='%s',target='%s'"
@@ -15,8 +16,11 @@ def compose_mounts(cwd, mounts):
     return " ".join(mounts_composed)
 
 if __name__ == "__main__":
+    docker_rennen_file = (
+        "docker-rennen.json" if len(sys.argv) == 1 else sys.argv[1]
+    )
     # read config
-    with open("docker-rennen.json") as json_config:
+    with open(docker_rennen_file) as json_config:
         config = json.load(json_config)
         docker_image = config["image"]
         mounts = config["mounts"]
