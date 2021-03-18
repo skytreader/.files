@@ -15,6 +15,10 @@ def compose_mounts(cwd, mounts):
     ]
     return " ".join(mounts_composed)
 
+def compose_env_string(envs):
+    # FIXME Not sure how this will behave under extensive quoting.
+    return ",".join("%s=%s" % (k, v) for k, v in envs.items())
+
 if __name__ == "__main__":
     docker_rennen_file = (
         "docker-rennen.json" if len(sys.argv) == 1 else sys.argv[1]
@@ -23,8 +27,9 @@ if __name__ == "__main__":
     with open(docker_rennen_file) as json_config:
         config = json.load(json_config)
         docker_image = config["image"]
-        mounts = config["mounts"]
+        mounts = config.get("mounts", {})
+        envs = compose_env_string(config.get("env", {}))
 
-        command = "docker run %s %s" % (compose_mounts(os.getcwd(), mounts), docker_image)
+        command = "docker run %s -e %s %s" % (compose_mounts(os.getcwd(), mounts), envs, docker_image)
         print(command)
         subprocess.run(command, shell=True)
