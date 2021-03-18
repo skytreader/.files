@@ -1,8 +1,8 @@
 # vim: set ft=sh:
 
 export M3_HOME="/opt"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-alias sls='./node_modules/serverless/bin/serverless.js'
+export JAVA_HOME="/usr"
+# alias sls='./node_modules/serverless/bin/serverless.js'
 
 gittheworks(){
     git config user.name "Chad Estioco"
