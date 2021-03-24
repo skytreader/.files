@@ -17,7 +17,9 @@ def compose_mounts(cwd, mounts):
 
 def compose_env_string(envs):
     # FIXME Not sure how this will behave under extensive quoting.
-    return ",".join("%s=%s" % (k, v) for k, v in envs.items())
+    envvars = ["%s=%s" % (k, v) for k, v in envs.items()]
+    compose_param_str = zip(["-e" for x in range(len(envvars))], envvars)
+    return " ".join("%s %s" % x for x in compose_param_str)
 
 if __name__ == "__main__":
     docker_rennen_file = (
@@ -30,6 +32,6 @@ if __name__ == "__main__":
         mounts = config.get("mounts", {})
         envs = compose_env_string(config.get("env", {}))
 
-        command = "docker run %s -e %s %s" % (compose_mounts(os.getcwd(), mounts), envs, docker_image)
+        command = "docker run %s %s %s" % (compose_mounts(os.getcwd(), mounts), envs, docker_image)
         print(command)
         subprocess.run(command, shell=True)
