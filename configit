@@ -2,3 +2,4 @@ git config --global user.name "Chad Estioco"
 git config --global user.email "chadestioco@gmail.com"
 git config --global core.editor "vim"
 git config --global core.fileMode false
+git config --global credential.helper cache
