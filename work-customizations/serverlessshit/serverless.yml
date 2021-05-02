@@ -1,0 +1,140 @@
+service: langserv
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-1
+  timeout: 30
+  vpc:
+    securityGroupIds:
+      - sg-902f9eeb
+    subnetIds:
+      - subnet-17f4d370
+  apiKeys:
+    - name: updateAPIKey-${self:provider.stage}
+      description: "use when updating the latest version of language files"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "s3:*"
+      Resource:
+        - { "Fn::GetAtt": ["CacheBucket", "Arn"] }
+        - { "Fn::Join": ["", [ { "Fn::GetAtt": ["CacheBucket", "Arn"] }, "/*"]]}
+  environment:
+    LANGSERV_STAGE: ${self:provider.stage}
+    aws_access_key_id: ${self:custom.aws_keys.aws_access_key_id}
+    aws_secret_access_key: ${self:custom.aws_keys.aws_secret_access_key}
+    # Might be unnecessary since we can construct this inline in code.
+    s3_bucket: ${self:custom.cacheName}
+
+plugins:
+  - serverless-domain-manager
+  - serverless-offline-scheduler
+  - serverless-offline
+
+custom:
+  domainEnvSuffix:
+    chad: -chad
+    dev: -dev
+    prod: ''
+  cacheNodeType:
+    # NOTE As of this writing, m3 is now a "previous generation" instance type.
+    chad: cache.t2.small
+    dev: cache.t2.small
+    prod: cache.t2.small
+  cacheName: langserv-cache-${self:provider.stage}
+  customDomain:
+    domainName: ${self:service}${self:custom.domainEnvSuffix.${self:provider.stage}}.public.ggs-ep.com
+    certificateName: '*.public.ggs-ep.com'
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: edge
+  aws_keys: ${ssm:/aws/reference/secretsmanager/langserv-s3-access~true}
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: "{gameAndVersion}/{language}/{pattern}"
+          cors: true
+          method: get
+          request:
+            parameters:
+              paths:
+                gameAndVersion: true
+                language: true
+                pattern: true
+          cacheKey:
+            - method.request.path.gameAndVersion
+            - method.request.path.language
+            - method.request.path.pattern
+      - http:
+          path: "{gameAndVersion}/{language}"
+          cors: true
+          method: get
+          request:
+            parameters:
+              paths:
+                gameAndVersion: true
+                language: true
+          cacheKey:
+            - method.request.path.gameAndVersion
+            - method.request.path.language
+      - http:
+          path: "update_latest/{gameIdent}/{language}"
+          method: post
+          private: true
+          request:
+            parameters:
+              paths:
+                gameIdent: true
+                language: true
+      - http:
+          path: "update_latest/{gameIdent}"
+          method: post
+          private: true
+          request:
+            parameters:
+              paths:
+                gameIdent: true
+      - http:
+          path: "/listen/subs"
+          method: post
+      - http: ANY /
+  pollUpdater:
+    handler: index.cacheUpdateEverything
+    events:
+      - schedule: cron(* 20 * * ? *)
+
+resources:
+  Resources:
+    CacheBucket:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        BucketName: ${self:custom.cacheName}
+    ApiGatewayMethodGameandversionVarLanguageVarPatternVarGet:
+      Properties:
+        RequestParameters:
+          method.request.path.shortUrl: true
+        Integration:
+          RequestParameters:
+            integration.request.path.shortUrl: method.request.path.shortUrl
+          # TODO Can this be arbitrary?
+          CacheNamespace: ApiGatewayMethodGameandversionVarLanguageVarPatternVarGetCacheNS
+          CacheKeyParameters:
+            - method.request.path.gameAndVersion
+            - method.request.path.language
+            - method.request.path.pattern
+    ApiGatewayMethodGameandversionVarLanguageVarGet:
+      Properties:
+        RequestParameters:
+          method.request.path.shortUrl: true
+        Integration:
+          RequestParameters:
+            integration.request.path.shortUrl: method.request.path.shortUrl
+          CacheNamespace: ApiGatewayMethodGameandversionVarLanguageVarGetCacheNS
+          CacheKeyParameters:
+            - method.request.path.gameAndVersion
+            - method.request.path.language
