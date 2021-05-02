@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def normalize_imports(i):
     sans_breaks = " ".join([l.strip() for l in i.split("\n")])
     return set(sans_breaks.split(", "))

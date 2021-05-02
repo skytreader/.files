@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Construct guitar TABlature from an input language. The input language is as so:
 
