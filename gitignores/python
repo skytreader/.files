@@ -10,3 +10,9 @@
 dist/
 build/
 *.mypy_cache/*
+
+bin/
+include/
+lib/
+lib64/
+share/
