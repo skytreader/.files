@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.23.1"
+    echo "1.24.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -69,6 +69,10 @@ brc(){
 # Edit files with automatic back-up
 bake(){
     [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d-%m-%y-%H.%M.%S`; vi "$1";
+}
+
+bak(){
+    [ "$1" != "" ] && cp "$1" "$1".bak-`date +%d-%m-%y-%H.%M.%S`;
 }
 
 # Move specified file/directory to /opt/bin so that it is executable _anywhere_
