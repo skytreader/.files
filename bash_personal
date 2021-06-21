@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.24.0"
+    echo "1.24.1"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -372,10 +372,11 @@ wacom_profile(){
     xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "2" "key +ctrl s -ctrl"
     # Personal Krita hotkey: brush tool
     xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "3" "key +b -b"
-    # Default Krita hotkey: rectangle select
-    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "8" "key +ctrl r -ctrl"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "8" "key +m -m"
     # Personal Krita hotkey: move tool
-    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "9" "key +t -t"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "9" "key +4 -4"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "10" "key +5 -5"
+    xsetwacom set "Wacom Intuos Pro M Pad pad" "Button" "11" "key +6 -6"
     xsetwacom --set "Wacom Intuos Pro M Finger touch" Touch off
     xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelUp" "key +"
     xsetwacom set "Wacom Intuos Pro M Pad pad" "AbsWheelDown" "key -"
