@@ -41,5 +41,12 @@ kubetail(){
     done
 }
 
+# When SSH sessions to gcloud servers timeout, they usually end up adding stray
+# characters to copy pastes. Use this command to stop that.
+claste(){
+    # See https://unix.stackexchange.com/a/196574
+    printf "\e[?2004l"
+}
+
 PROMPT_COMMAND=check_kcl_context
 PATH="~/.asdf/bin:$PATH"

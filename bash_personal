@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.24.1"
+    echo "1.26.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -253,13 +253,6 @@ line(){
     head -n $1 $2 | tail -n 1
 }
 
-# When SSH sessions to gcloud servers timeout, they usually end up adding stray
-# characters to copy pastes. Use this command to stop that.
-claste(){
-    # See https://unix.stackexchange.com/a/196574
-    printf "\e[?2004l"
-}
-
 fx(){
     # Spin up Firefox with a blank profile.
     firefox --new-instance --profile $(mktemp -d)
@@ -392,4 +385,10 @@ wacom_profile(){
         xsetwacom --set "Wacom Intuos Pro M Pen pad" MapToOutput "DP-3"
         xsetwacom --set "Wacom Intuos Pro M Pen touch" MapToOutput "DP-3"
     fi
+}
+
+# Minimize the given pdf file, uses ghostscript.
+# Usage: minimize_pdf infile outfile
+minimize_pdf(){
+    gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$2" "$1"
 }
