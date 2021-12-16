@@ -298,9 +298,8 @@ remindme(){
 
 # get access token
 gat(){
-    xclip -sel clip <~/.ssh/access_tokens/$1 &
-    sleep 60
-    echo "" | xclip -sel clip
+    xclip -sel clip <~/.ssh/access_tokens/$1
+    (sleep 60; echo "" | xclip -sel clip) &
 }
 
 # Invoke this command on a directory containing only videos and these videos
