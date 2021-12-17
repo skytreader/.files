@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.26.1"
+    echo "1.26.2"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -299,7 +299,9 @@ remindme(){
 # get access token
 gat(){
     xclip -sel clip <~/.ssh/access_tokens/$1
-    (sleep 60; echo "" | xclip -sel clip) &
+    # TODO Ensure that closing the current terminal session does not prevent this line
+    # nohup maybe?
+    ((sleep 60; echo "" | xclip -sel clip) &)
 }
 
 # Invoke this command on a directory containing only videos and these videos
