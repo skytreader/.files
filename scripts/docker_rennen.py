@@ -2,15 +2,27 @@
 
 import json
 import os
+import re
 import subprocess
 import sys
 
-def compose_mounts(cwd, mounts):
+cli_input_form = re.compile(r"\{\d+\}")
+
+def mount_substitute(source, target, cli_inputs):
     template = "--mount type=bind,source='%s',target='%s'"
+    if cli_input_form.match(target):
+        try:
+            return template % (source, target.format(*cli_inputs))
+        except IndexError:
+            raise Exception("Not enough CLI inputs provided.")
+    else:
+        return template % (source, target)
+
+def compose_mounts(cwd, mounts, cli_inputs):
     # FIXME There's a myriad of ways `source` might be specified. I specify it
     # relative but it should also work if it is specified as an absolute path.
     mounts_composed = [
-        template % (os.path.join(cwd, source), target)
+        mount_substitute(os.path.join(cwd, source), target, cli_inputs)
         for source, target in mounts.items()
     ]
     return " ".join(mounts_composed)
@@ -22,9 +34,9 @@ def compose_env_string(envs):
     return " ".join("%s %s" % x for x in compose_param_str)
 
 if __name__ == "__main__":
-    docker_rennen_file = (
-        "docker-rennen.json" if len(sys.argv) == 1 else sys.argv[1]
-    )
+    # This filename is reserved
+    docker_rennen_file = "docker-rennen.json"
+
     # read config
     with open(docker_rennen_file) as json_config:
         config = json.load(json_config)
@@ -32,6 +44,10 @@ if __name__ == "__main__":
         mounts = config.get("mounts", {})
         envs = compose_env_string(config.get("env", {}))
 
-        command = "docker run %s %s %s" % (compose_mounts(os.getcwd(), mounts), envs, docker_image)
+        command = "docker run %s %s %s" % (
+            compose_mounts(os.getcwd(), mounts, sys.argv[1:]),
+            envs,
+            docker_image
+        )
         print(command)
-        subprocess.run(command, shell=True)
+        #subprocess.run(command, shell=True)
