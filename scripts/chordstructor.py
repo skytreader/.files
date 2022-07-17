@@ -12,6 +12,20 @@ String number takes the convention that the first string is the low E string in
 standard tuning.
 
 And the input file/stream is just a series of zeitpunkten or comments.
+
+What we have here is a relatively simple language serializing tablature. For
+example, the E minor chord can be encoded as
+
+    1 0, 2 2, 3 2, 4 0, 5 0, 6 0
+
+You can also encode an arpeggio by
+
+    1 0
+    2 2
+    3 2
+    4 0
+    5 0
+    6 0
 """
 from typing import List, Tuple
 import re
