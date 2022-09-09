@@ -192,6 +192,8 @@ vip(){
     fi
 }
 
+# Note that as this uses `sort`, it needs a certain amount of disk space to work
+# with. Expect this to fail on completely saturated servers.
 find_large_files(){
     du -a $1 | sort -n -r | head -n $2
 }
