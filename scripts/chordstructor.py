@@ -16,27 +16,28 @@ And the input file/stream is just a series of zeitpunkten or comments.
 What we have here is a relatively simple language serializing tablature. For
 example, the E minor chord can be encoded as
 
-    1 0, 2 2, 3 2, 4 0, 5 0, 6 0
+    6 0, 5 2, 4 2, 3 0, 2 0, 1 0
 
 You can also encode an arpeggio by
 
-    1 0
-    2 2
-    3 2
-    4 0
-    5 0
     6 0
+    5 2
+    4 2
+    3 0
+    2 0
+    1 0
 """
 from typing import List, Tuple
 import re
 import sys
+import traceback
 
 ZeitPunkten = Tuple[Tuple[Tuple[int, str], ...], ...]
 
 def measured_chordstructor(zeitpunkten: ZeitPunkten, measure: int) -> str:
     start = 0
     tabs = [chordstructor(zeitpunkten[_s:_s + measure]) for _s in range(0, len(zeitpunkten), measure)]
-    return "\n".join(tabs)
+    return "\n\n".join(tabs)
 
 def chordstructor(zeitpunkten: ZeitPunkten) -> str:
     def note_width(fret_act: str) -> int:
@@ -64,14 +65,36 @@ def chordstructor(zeitpunkten: ZeitPunkten) -> str:
 
     return "|\n".join(["".join(line) for line in lines])
 
+def fixer(zeitpunkten: ZeitPunkten) -> str:
+    translation = (6, 5, 4, 3, 2, 1)
+    translated: List[str] = []
+
+    for zp in zeitpunkten:
+        timepoint = []
+        for fingerpos in zp:
+            new_fingerpos = (
+                str(translation[fingerpos[0] - 1]),
+                fingerpos[1]
+            )
+            timepoint.append(" ".join(new_fingerpos))
+
+        translated.append(", ".join(timepoint))
+
+    return "\n".join(translated)
+
 if __name__ == "__main__":
     with open(sys.argv[1]) as infile:
         zeitpunkten = []
-        for line in infile:
+        for linnum, line in enumerate(infile, 1):
             if line[0] == '#':
                 continue
-            line_parse = re.compile(",\s*").split(line)
-            point: Tuple[Tuple[int, str], ...] = tuple((int(x.split()[0]), x.split()[1]) for x in line_parse)
-            zeitpunkten.append(point)
+            try:
+                line_parse = re.compile(",\s*").split(line)
+                point: Tuple[Tuple[int, str], ...] = tuple((int(x.split()[0]), x.split()[1]) for x in line_parse)
+                zeitpunkten.append(point)
+            except IndexError:
+                print("Syntax error at line %s: %s" % (linnum, line))
+                print(traceback.format_exc())
+                exit(1)
 
         print(measured_chordstructor(tuple(zeitpunkten), 30))
