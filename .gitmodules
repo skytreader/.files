@@ -4,3 +4,6 @@
 [submodule "vim-work/kalibrr/typescript-vim"]
 	path = vim-work/kalibrr/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "work-customizations"]
+	path = work-customizations
+	url = https://github.com/skytreader/work-customizations.git
