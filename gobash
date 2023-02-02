@@ -17,6 +17,7 @@ CURRENT_PERSONAL_COMPUTER='scheherazade'
 host="$(hostname)"
 
 if [ "$host" != "$CURRENT_PERSONAL_COMPUTER" ] && [ ! -z "$WORK_ENV" ]; then
+    echo "Installing new work-customizations."
     transfer work-customizations/$WORK_ENV
 elif [ -z "$WORK_ENV" ]; then
     echo "WORK_ENV variable not set. Not fatal but this is not ideal."
