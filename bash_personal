@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.28.0"
+    echo "1.29.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -332,7 +332,11 @@ mk_ansible_role(){
 }
 
 docker_prufen(){
-    docker run -it --entrypoint /bin/bash $1
+    if [ -z "$2" ]; then
+        docker run -it --entrypoint /bin/bash $1
+    else
+        docker run -it --entrypoint $2 $1
+    fi
 }
 
 docker_laufen(){
