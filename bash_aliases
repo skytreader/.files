@@ -1,4 +1,3 @@
 # vim: set ft=sh:
-# For Kalibrr
 
-alias kcl='kubectl'
+alias mvn=/opt/apache-maven-3.9.0/bin/mvn
