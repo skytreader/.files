@@ -35,6 +35,8 @@ if __name__ == "__main__":
             if r.status_code == 200:
                 data = json.loads(r.text)
                 if len(snapshot["submitted"]) < len(data["submitted"]):
+                    with open(snapshot_filename, "w") as snapjson:
+                        snapjson.write(r.text)
                     msg = Notify()
                     msg.title = "WATCH OUT!"
                     msg.message = "Updated!"
