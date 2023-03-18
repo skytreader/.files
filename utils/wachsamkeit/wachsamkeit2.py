@@ -40,7 +40,7 @@ if __name__ == "__main__":
                         snapjson.write(r.text)
                     msg = Notify()
                     msg.title = "WATCH OUT!"
-                    msg.message = "Updated!"
+                    msg.message = "%s Updated!" % sys.argv[1]
                     msg.send()
                 else:
                     logging.info("Checked but no dice.")
