@@ -42,10 +42,12 @@ if __name__ == "__main__":
                     msg.title = "WATCH OUT!"
                     msg.message = "%s Updated!" % sys.argv[1]
                     msg.send()
+                    snapshot = data
                 elif len(snapshot["submitted"]) > len(data["submitted"]):
                     logging.info("%s seems to have deleted activity..." % sys.argv[1])
                     with open(snapshot_filename, "w") as snapjson:
                         snapjson.write(r.text)
+                    snapshot = data
                 else:
                     logging.info("Checked but no dice.")
             
