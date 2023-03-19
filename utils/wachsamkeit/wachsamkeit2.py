@@ -21,7 +21,7 @@ if __name__ == "__main__":
     snapshot_filename = "%s-snapshot.json" % sys.argv[1]
     snapshot = {}
     
-    if not os.path.isfile("snapshot.json"):
+    if not os.path.isfile(snapshot_filename):
         initial = requests.get("https://hacker-news.firebaseio.com/v0/user/%s.json" % sys.argv[1])
         with open(snapshot_filename, "w") as snapjson:
             snapjson.write(initial.text)
@@ -29,8 +29,8 @@ if __name__ == "__main__":
     with open(snapshot_filename) as snapjson:
         snapshot = json.load(snapjson)
 
-    try:
-        while True:
+    while True:
+        try:
             r = requests.get("https://hacker-news.firebaseio.com/v0/user/%s.json" % sys.argv[1])
             if r.status_code == 200:
                 data = json.loads(r.text)
@@ -50,5 +50,7 @@ if __name__ == "__main__":
                     logging.info("Checked but no dice.")
             
             time.sleep(random.randrange(1, 600))
-    except KeyboardInterrupt:
-        exit(1)
+        except KeyboardInterrupt:
+            exit(1)
+        except requests.exceptions.ConnectionError:
+            logging.error("Connection Error, just continue")
