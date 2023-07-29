@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.30.0"
+    echo "1.31.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -409,8 +409,12 @@ minimize_pdf(){
     gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$2" "$1"
 }
 
-# Usage: snipgif timestamp_start duration input output
+# Usage: snipgif timestamp_start duration input output scale
 # timestamp_start and duration are both in seconds.
 snipgif(){
-    ffmpeg -ss "$1" -t "$2" -i "$3" -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$4"
+    scale=480
+    if [ "$5" != "" ]; then
+        scale="$5"
+    fi
+    ffmpeg -ss "$1" -t "$2" -i "$3" -vf "fps=10,scale=$scale:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$4"
 }
