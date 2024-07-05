@@ -1,4 +1,3 @@
-from argparse import ArgumentParser
 from abc import ABC, abstractmethod
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
