@@ -32,4 +32,4 @@ echo "Installing additional packages..."
 # just-in-case scenario (it won't hurt).
 sudo apt-get update
 
-sudo apt-get install -y ppa-purge traceroute tree unity-tweak-tool vim xclip
+sudo apt-get install -y ppa-purge traceroute tmux tree unity-tweak-tool vim xclip
