@@ -76,6 +76,7 @@ au BufRead,BufNewFile *.ino set filetype=arduino
 " See: https://stackoverflow.com/questions/9131271/vim-auto-line-break for
 " more tricks
 au BufRead,BufNewFile *.markdown set tw=80
+au BufRead,BufNewFile *.md set tw=80
 
 set foldmethod=indent
 set foldlevel=99
