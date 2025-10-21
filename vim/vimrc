@@ -98,3 +98,6 @@ augroup END
 if has("gui_running")
   colorscheme evening
 endif
+
+let @d="a&emdash;\<Esc>"
+let @e="a&hellip;\<Esc>"
