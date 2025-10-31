@@ -99,5 +99,5 @@ if has("gui_running")
   colorscheme evening
 endif
 
-let @d="a&emdash;\<Esc>"
+let @d="a&mdash;\<Esc>"
 let @e="a&hellip;\<Esc>"
