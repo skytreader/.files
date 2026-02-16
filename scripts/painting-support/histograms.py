@@ -32,7 +32,7 @@ def hue_membership_hsv(
     rgb: Tuple[int, int, int],
     target: ColorName,
     *,
-    threshold: float = 0.5
+    threshold: float = 0.5,
     sigma_deg: float = 20.0,
     min_s: float = 0.20,
     min_v: float = 0.05,
@@ -106,14 +106,12 @@ def hue_membership_hsv(
     # Clamp for safety
     return clamp(membership, 0, 1) >= threshold
 
-
 def is_color(
     rgb: Tuple[int, int, int],
     target: ColorName,
 ) -> bool:
     """Convenience boolean check using the fuzzy membership above."""
     return hue_membership_hsv(rgb, target)
-
 
 def process_image(
     input_path: str,
@@ -126,8 +124,12 @@ def process_image(
     Pixels outside the [low, high] HSV Value range become transparent.
     If 'color' is set, only pixels matching that color (by the fuzzy metric) are kept.
     """
+    def create_outpath():
+        name = input_path.rsplit(".", 2)[0]
+        color_name = f"-col{color}"
+        return f"{name}-low{low}-hi{high}{color_name if color else ""}.png"
+
     # Sanity & clamping
-    low = max(0.0, min(1.0, low))
     low = clamp(low, 0, 1)
     high = clamp(high, 0, 1)
     if low > high:
@@ -159,14 +161,13 @@ def process_image(
             else:
                 out_px[x, y] = (0, 0, 0, 0)
 
-    out.save(input_path, "PNG")
-
+    out.save(create_outpath(), "PNG")
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description="Filter an image by HSV Value range and optional color.")
     p.add_argument("input", help="Input JPG path")
-    p.add_argument("--low", type=float, required=True, help="Lower bound for HSV Value (0..1)")
-    p.add_argument("--high", type=float, required=True, help="Upper bound for HSV Value (0..1)")
+    p.add_argument("--low", type=float, required=True, help="Lower bound for HSV Value [0, 1]")
+    p.add_argument("--high", type=float, required=True, help="Upper bound for HSV Value [0, 1]")
     p.add_argument("--color", choices=["red", "green", "blue"], default=None, help="Optional color constraint")
     args = p.parse_args()
     process_image(
@@ -174,9 +175,4 @@ if __name__ == "__main__":
         args.low,
         args.high,
         color=args.color,
-        threshold=args.threshold,
-        sigma_deg=args.sigma,
-        min_s=args.min_sat,
-        min_v=args.min_val,
-        sat_power=args.sat_power,
     )
