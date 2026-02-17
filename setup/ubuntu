@@ -8,21 +8,6 @@ sudo mkdir /opt/bin
 # Set compose key
 gsettings set org.gnome.desktop.input-sources xkb-options "['compose:lwin']"
 
-# Install virtualenv via virtualenv burrito
-if [ ! -d ~/.virtualenvs ]; then
-    echo "Installing virtualenv"
-    curl -sL https://raw.githubusercontent.com/brainsik/virtualenv-burrito/master/virtualenv-burrito.sh | $SHELL
-fi
-
-# Install f.lux
-echo "Installing f.lux"
-sudo apt-get install python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1
-cd /tmp
-git clone "https://github.com/xflux-gui/xflux-gui.git"
-cd xflux-gui
-python download-xflux.py
-python setup.py install --user
-
 ##########################
 # Add all PPA's here
 ##########################
