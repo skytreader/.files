@@ -53,7 +53,6 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
-syntax on
 set ruler
 set number
 set ai
@@ -72,14 +71,19 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 " http://www.vim.org/scripts/script.php?script_id=2654
 au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
+
 " TextWrap markdown files to 80 (sync with colorcolumn)
 " See: https://stackoverflow.com/questions/9131271/vim-auto-line-break for
 " more tricks
 au BufRead,BufNewFile *.markdown set tw=80
 au BufRead,BufNewFile *.md set tw=80
+
 " All YAML files I work with indent with two spaces
 au BufRead,BufNewFile *.yml set ts=2
 au BufRead,BufNewFile *.yaml set ts=2
+
+" Textual CSS is just CSS
+au BufRead,BufNewFile *.tcss set filetype=css
 
 set foldmethod=indent
 set foldlevel=99
