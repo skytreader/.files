@@ -85,6 +85,8 @@ au BufRead,BufNewFile *.yaml set ts=2
 " Textual CSS is just CSS
 au BufRead,BufNewFile *.tcss set filetype=css
 
+au BufRead,BufNewFile Jenkinsfile* set filetype=groovy
+
 set foldmethod=indent
 set foldlevel=99
 map <space> za
