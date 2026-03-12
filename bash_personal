@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.36.0"
+    echo "1.37.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -215,6 +215,7 @@ pycheck(){
     python -m py_compile $1
 }
 
+# Go to a Python package's directory
 pycd(){
     pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`
 }
@@ -493,4 +494,31 @@ screenshotter(){
     
     echo "All screenshots saved to the '$output_dir' directory."
     set +u
+}
+
+# TODOs
+# - allow user to pass sort type (after `sort` flags)
+# - more sophisticated debug/dry-run mode
+# - do something special if outdir exists?
+# - parallel processing?
+krexport(){
+    SRC_DIR="${1:-.}"
+    OUT_DIR="${2:-./export}"
+    DEBUG="${3:-f}"
+    
+    mkdir -p "$OUT_DIR"
+    
+    i=1
+    
+    # Find .kra files, sort them, and process
+    while IFS= read -r -d '' file; do
+        out="$OUT_DIR/$i.jpg"
+        echo "Exporting: $file -> $out"
+        if [ "$DEBUG" != "true" ]; then
+            krita --export --export-filename "$out" "$file"
+        fi
+        ((i++))
+    done < <(find "$SRC_DIR" -maxdepth 1 -type f -name '*.kra' -print0 | sort -zV)
+    
+    echo "Done. Exported $((i-1)) files to $OUT_DIR"
 }
