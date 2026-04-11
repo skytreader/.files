@@ -119,9 +119,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Pyenv stuff
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+if [ -x "$(command -v pyenv)" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init - bash)"
+fi
 
 # venvburrito - Used for very legacy stuff. Deprecated!
 if [ -f ~/.venvburrito/startup.sh ]; then
