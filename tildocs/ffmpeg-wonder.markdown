@@ -10,8 +10,10 @@ ffmpeg -i file.webp file.jpg
 
 Compile a bunch of JPEGs to a slideshow movie
 
+> What's the difference between `framerate` and `fps` here?
+
 ```
-ffmpeg -framerate 2 -pattern_type glob -i "DSC*.JPG" -c:v libx264 -vf "fps=25,format=yuv420p" out.mp4
+ffmpeg -framerate 1 -pattern_type glob -i "DSC*.JPG" -c:v libx264 -vf "fps=1,format=yuv420p" out.mp4
 ```
 
 ---
