@@ -139,7 +139,7 @@ if [ ! -z "$WORK_ENV" ] && [ -f ~/."$WORK_ENV" ]; then
     . ~/."$WORK_ENV"
 fi
 
-if type lsvirtualenv > /dev/null; then
+if [ -x lsvirtualenv ]; then
     alias lsvirtualenv='lsvirtualenv -b'
 fi
 
