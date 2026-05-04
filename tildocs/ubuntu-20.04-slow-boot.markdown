@@ -49,3 +49,5 @@ implemented in a1197c4ca1b.
 The second problem is still ongoing and I have no idea yet how to handle it.
 Maybe really finally disable mysql (I use docker too much and, as noted above,
 starting it really seems to take time. Which is disruptive for my workflow!)
+
+- Firefox became fast again in 22.04, when it became a snap package.

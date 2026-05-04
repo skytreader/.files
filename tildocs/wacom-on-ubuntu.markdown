@@ -1,5 +1,9 @@
 # Wacom on Ubuntu 16.04
 
+> Wacom seems to be supported by default in 22.04 but don't quote me on that as
+> my 22.04 machine traces lineage back from the 16.04 machine that started this
+> tildoc in the first place.
+
 Wrestled hard against Ubuntu just to get my new Wacom Intuos Pro to work. First
 I was hoping [this](https://medium.com/@microaeris/setting-up-wacom-tablets-with-ubuntu-16-04-d7277e4a595d)
 would be enough. But no! This is Linux you have to suffer when integrating

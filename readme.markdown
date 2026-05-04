@@ -1,7 +1,6 @@
 # .files
 My personal Linux config files. I am using this on the following platforms:
 
-- Ubuntu 20.04 with bash 5.0.17(1)-release
 - Ubuntu 22.04 with bash 5.1.16(1)-release
 
 # bashrc set-up on a new machine
