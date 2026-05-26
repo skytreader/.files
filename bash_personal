@@ -12,7 +12,7 @@
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
 dfiles_ver(){
-    echo "1.37.0"
+    echo "1.38.0"
 }
 
 alias mypy='mypy --ignore-missing-imports'
@@ -493,6 +493,25 @@ screenshotter(){
     done < "$timestamps_file"
     
     echo "All screenshots saved to the '$output_dir' directory."
+    set +u
+}
+
+flipbook(){
+    set -u
+    video_file=$1
+    increments=$2
+    output_dir="$video_file-FLIPBOOK"
+    mkdir -p "$output_dir"
+    i=1
+    # https://nickjanetakis.com/blog/get-video-duration-in-seconds-with-ffmpeg-ffprobe
+    limit=$(ffprobe -v error -select_streams v:0 -show_entries stream=duration -of default=noprint_wrappers=1:nokey=1 "$video_file" | xargs printf "%.0f\n")
+    while [ $i -le $limit ];
+    do
+        screenshot_file="$output_dir/$i.png"
+        ffmpeg -y -ss "$i" -i "$video_file" -vframes 1 "$screenshot_file" < /dev/null > /tmp/flipbook_ffmpeg.log 2>&1
+        echo "Processed $i/$limit"
+        i=$(expr $i + $increments)
+    done
     set +u
 }
 
