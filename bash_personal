@@ -11,12 +11,14 @@
 #    definitely falls under this.
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
+DOTFILES_VERSION="1.39.0"
+
+# We now just keep this for backwards compatibility.
 dfiles_ver(){
-    echo "1.38.0"
+    echo "$DOTFILES_VERSION"
 }
 
 alias mypy='mypy --ignore-missing-imports'
-alias krita='/opt/bin/krita-5.2.9-x86_64.AppImage'
 
 # Create a directory and switch to it.
 msdir(){
@@ -540,4 +542,8 @@ krexport(){
     done < <(find "$SRC_DIR" -maxdepth 1 -type f -name '*.kra' -print0 | sort -zV)
     
     echo "Done. Exported $((i-1)) files to $OUT_DIR"
+}
+
+grugtext(){
+    sed -i "s/[“”]/\"/g; s/[‘’]/'/g; s/[…]/.../g; s/[—]/---/" "$1"
 }
