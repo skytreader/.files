@@ -96,8 +96,9 @@ anywhere(){
             file_dircount=`expr $file_dircount - 1`
             find $1 -print0 | tail -n $file_dircount -z | xargs -I xx -0 sudo cp xx /opt/bin/
         else
+            only_files=$(basename $1)
             sudo cp $1 /opt/bin
-            sudo chmod +x /opt/bin/$1
+            sudo chmod +x /opt/bin/$only_files
         fi
     else
         for f in $1; do
