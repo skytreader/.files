@@ -11,7 +11,7 @@
 #    definitely falls under this.
 # 3. PATCH version when you make backwards-compatible bug fixes. Bug fixes---
 #    when you modify the functions in this file to (presumably) fix bugs. 410488
-DOTFILES_VERSION="1.39.0"
+DOTFILES_VERSION="1.39.1"
 
 # We now just keep this for backwards compatibility.
 dfiles_ver(){
